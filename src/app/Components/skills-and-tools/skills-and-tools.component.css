@@ -1,0 +1,14 @@
+.header{
+    font-family: "Montserrat", sans-serif;
+}
+.major button{
+    border-radius: 5rem solid;
+    border: 1px solid #d3d3d3 ;
+    width: 100%;
+    text-align: start;
+}
+.data .submit{
+    background-color: var(--main-color);
+    color: #fff;
+    margin-inline-end: 0;
+}

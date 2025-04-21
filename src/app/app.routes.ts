@@ -13,6 +13,7 @@ import { JobApplicationComponent } from './Components/job-application/job-applic
 import { JobSeekerDashboardComponent } from './Components/job-seeker-dashboard/job-seeker-dashboard.component';
 import { TrackSelectionComponent } from './Components/track-selection/track-selection.component';
 import { PostsComponent } from './Components/posts/posts.component';
+import { SkillsAndToolsComponent } from './Components/skills-and-tools/skills-and-tools.component';
 
 export const routes: Routes = [
   {
@@ -39,6 +40,11 @@ export const routes: Routes = [
         path: 'courseDetails',
         component: CourseDetailsComponent,
         title: 'Course Details',
+      },
+      {
+        path:'skillsAndTools',
+        component:SkillsAndToolsComponent,
+        title:'TakeSkills'
       },
       {
         path: 'employeerDashboard',
