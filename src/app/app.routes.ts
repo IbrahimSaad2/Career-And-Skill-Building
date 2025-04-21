@@ -15,23 +15,49 @@ import { TrackSelectionComponent } from './Components/track-selection/track-sele
 import { PostsComponent } from './Components/posts/posts.component';
 
 export const routes: Routes = [
-  { path: '', component: AuthLayoutComponent ,children:[
-    {path:'' ,redirectTo:'home',pathMatch:'full'},
-    {path:'login',component:LoginComponent , title:'Login'},
-    {path:'signup',component:SignupComponent,title:'SignUp'},
-    {path:'home',component:HomeComponent, title:'Home-Guset'}
-]},
-  { path: '', component: BlankLayoutComponent ,children:[
-      {path:'',redirectTo:'home',pathMatch:'full'},
-      {path:'home',component:HomeComponent,title:'Home-User'},
-      {path:'adminDashboard',component:AdminDashboardComponent,title:'Admin-Dashbord'},
-      {path:'courseDetails',component:CourseDetailsComponent,title:'Course Details'},
-      {path:'employeerDashboard',component:EmployeerDashboardComponent,title:'Employeer-Dashboard'},
-      {path:'jobApplication',component:JobApplicationComponent ,title:'Job Application'},
-      {path:'jobSeekerDashboard',component:JobSeekerDashboardComponent,title:'Job Seeker-Dashboard'},
-      {path:'tracks',component:TrackSelectionComponent,title:'Tarcks'},
-      {path:'posts',component:PostsComponent,title:'Posts'},
-
-] },
-  { path: '**', component: NotfoundComponent },
+  {
+    path: '',
+    component: AuthLayoutComponent,
+    children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: 'login', component: LoginComponent, title: 'Login' },
+      { path: 'signup', component: SignupComponent, title: 'SignUp' },
+    ],
+  },
+  {
+    path: '',
+    component: BlankLayoutComponent,
+    children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', component: HomeComponent, title: 'Home-User' },
+      {
+        path: 'adminDashboard',
+        component: AdminDashboardComponent,
+        title: 'Admin-Dashbord',
+      },
+      {
+        path: 'courseDetails',
+        component: CourseDetailsComponent,
+        title: 'Course Details',
+      },
+      {
+        path: 'employeerDashboard',
+        component: EmployeerDashboardComponent,
+        title: 'Employeer-Dashboard',
+      },
+      {
+        path: 'jobApplication',
+        component: JobApplicationComponent,
+        title: 'Job Application',
+      },
+      {
+        path: 'jobSeekerDashboard',
+        component: JobSeekerDashboardComponent,
+        title: 'Job Seeker-Dashboard',
+      },
+      { path: 'tracks', component: TrackSelectionComponent, title: 'Tarcks' },
+      { path: 'posts', component: PostsComponent, title: 'Posts' },
+      { path: '**', component: NotfoundComponent },
+    ],
+  },
 ];

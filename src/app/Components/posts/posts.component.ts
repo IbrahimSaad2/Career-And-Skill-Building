@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 interface IPosts{
   id:number,
   title:string,
@@ -9,7 +10,7 @@ interface IPosts{
 }
 @Component({
   selector: 'app-posts',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.css'
 })
