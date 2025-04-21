@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root{
+    --main-color : #0D47A1;
+    --secondary-color : #42A5F5;
+    --accent: #009688;
+}
+.active-link{
+    color: var(--accent);
+    border-radius: 5px;
+}
+cr{
+    cursor: pointer;
+}
+a,a:hover{
+    color: black;
+    text-decoration: none;
+}
+.text-main{
+    color: var(--main-color);
+}
+.text-secondary{
+    color: var(--secondary-color);
+}
+.accent{
+    color: var(--accent);
+}
+.navbar{
+    background-color: #245773;
+}

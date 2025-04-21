@@ -1,0 +1,45 @@
+<div class="mt-5 header container-fluid">
+    <div class="text-center title">
+        <h2>Open Opportunities</h2>
+        <p>Showing {{posts.length}} Opportunities</p>
+    </div>
+    <div class="search  row justify-content-between">
+        <div class="input col-md-3 ms-3">
+            <label for="search" class="">Search</label>
+            <input class="form-control " type="text" id="search">
+        </div>
+        <div class="filter col-md-3 me-3">
+            <label for="validationCustom04" class="form-label">Filtarion</label>
+            <select class="form-select" id="validationCustom04" required >
+            <option>Choose...</option>
+            @for (track of tracks; track $index) {
+                <option value="">{{track}}</option>
+            }
+            </select>
+            <div class="invalid-feedback">
+            Please select a valid state.
+            </div>
+        </div>
+    </div> 
+</div>
+<div class="posts container ">
+        @for (post of posts; track $index) {
+            <div class="border-bottom row position-relative">
+                <div class="col-md-8 row">
+                    <a href=""><h3 class="my-3">{{post.title}}</h3></a>
+                    <div class="col-md-2">
+                        <p>{{post.location}}</p>
+                    </div>
+                    <div class="col-md-2">
+                        <p>{{post.since}}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>{{post.capacity}}</p>
+                    </div>
+                </div>
+                <div class="col-md-4 imagepost">
+                    <img [src]="post.imgSrc" alt="">
+                </div>
+            </div>
+        }
+</div> 

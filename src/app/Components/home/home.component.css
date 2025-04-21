@@ -1,0 +1,19 @@
+.header{
+    background-image: url(../../../assets/Img/home.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:cover ;
+    height: 80vh;
+}
+.header h1{
+    font-size: 76px;
+    color: #fff;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+}
+.header .description{
+    color: #aaa;
+}
+.about img{
+    width: 75%;
+}

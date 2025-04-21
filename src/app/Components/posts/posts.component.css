@@ -1,0 +1,20 @@
+.title p {
+  font-weight: 600;
+}
+.search {
+  font-family: "Montserrat", sans-serif;
+}
+.posts {
+  font-family: "Montserrat", sans-serif;
+  margin-top: 50px;
+}
+.imagepost img {
+  width: 5%;
+  position: absolute;
+  right: 20px;
+  top: 45px;
+}
+.posts a {
+  color: #000;
+  text-decoration: none;
+}

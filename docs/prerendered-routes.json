@@ -1,0 +1,15 @@
+{
+  "routes": {
+    "/CareerAndSkillBuilding": {},
+    "/CareerAndSkillBuilding/adminDashboard": {},
+    "/CareerAndSkillBuilding/courseDetails": {},
+    "/CareerAndSkillBuilding/employeerDashboard": {},
+    "/CareerAndSkillBuilding/home": {},
+    "/CareerAndSkillBuilding/jobApplication": {},
+    "/CareerAndSkillBuilding/jobSeekerDashboard": {},
+    "/CareerAndSkillBuilding/login": {},
+    "/CareerAndSkillBuilding/posts": {},
+    "/CareerAndSkillBuilding/signup": {},
+    "/CareerAndSkillBuilding/tracks": {}
+  }
+}

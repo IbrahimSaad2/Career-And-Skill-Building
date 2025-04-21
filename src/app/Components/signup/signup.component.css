@@ -1,0 +1,18 @@
+.content{
+    margin-top: 100px;
+}
+.inputs{
+    background-color: #F5F5F5;
+}
+.inputs p{
+    font-size: 13px;
+    color: #656262;
+    font-family: "Montserrat", sans-serif;
+}
+.inputs button{
+    background-color: var(--main-color);
+    color: #fff;
+}
+.inputs h5{
+    font-family: "Montserrat", sans-serif;
+}
