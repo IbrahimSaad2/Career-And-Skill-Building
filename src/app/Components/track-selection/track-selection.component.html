@@ -1,1 +1,53 @@
-<p>track-selection works!</p>
+<div class="track-container">
+    <h2>Select Track</h2>
+    <div class="track-cards">
+      <!-- Frontend Card -->
+      <div class="track-card">
+        <img src="assets/Img/frontend.PNG" alt="Front-End" />
+        <p class="duration">
+          <span class="icon">⏱</span> 8 months / 30 h per week / online
+        </p>
+        <h3>Front-End Web Development</h3>
+        <p class="description">
+          You will learn the basics of writing code in HTML, CSS, and JavaScript,
+          while also focusing on how to design user-friendly websites through
+          UI/UX design and store your code with GitHub. Built to take you from
+          novice to a job-ready developer.
+          <br />
+          Apply Now
+        </p>
+        <button
+          mat-raised-button
+          color="primary"
+          [routerLink]="['/courseDetails']"
+        >
+          Apply
+        </button>
+      </div>
+  
+      <!-- Back-End Card -->
+      <div class="track-card">
+        <img src="assets/Img/backend.PNG" alt="Back-End" />
+        <p class="duration">
+          <span class="icon">⏱</span> 8 months / 30 h per week / online
+        </p>
+        <h3>Back-End Web Development</h3>
+        <p class="description">
+          This programme teaches languages like JavaScript and Python and data
+          management tools like SQL. This hands-on, project-based learning style
+          prepares you to work as a backend developer after graduation. Suitable
+          for beginners.
+          <br />
+          Apply Now
+        </p>
+        <button
+          mat-raised-button
+          color="primary"
+          [routerLink]="['/courseDetails']"
+        >
+          Apply
+        </button>
+      </div>
+    </div>
+  </div>
+  

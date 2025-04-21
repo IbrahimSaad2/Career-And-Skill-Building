@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-track-selection',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './track-selection.component.html',
   styleUrl: './track-selection.component.css'
 })
