@@ -1,5 +1,5 @@
 .header{
-    background-color: rgb(230, 230, 230);
+    background-color: rgb(244, 244, 244);
     padding: 10px;
 }
 .header .logo{
@@ -10,7 +10,8 @@
     position: relative;
     bottom: 50px;
     left: 10px;
-    background-color: rgb(199, 199, 199);
+    color: #fff;
+    background-color: var(--accent);
     width: 8%;
 }
 .location{
@@ -18,4 +19,38 @@
     bottom: 50px;
     left: 10px;
     width: 8%;
+}
+.somedetails{
+    position: relative;
+    bottom: 40px;
+    color: #808080;
+}
+.apply a{
+    background-color: var(--main-color);
+    color: #fff;
+    padding: 10px;
+}
+.apply .now{
+    background-color: var(--main-color);
+    color: #fff;
+    padding: 10px;
+}
+.details{
+    background-color: rgb(244, 244, 244);
+}
+.skill{
+    background-color: rgb(244, 244, 244);
+}
+.tools p{
+    border-radius: 9%;
+    background-color: #dcdcdc;
+    padding: 10px;
+    margin-inline: 8px;
+}
+.description{
+    background-color: rgb(244, 244, 244);
+
+}
+.description p{
+    font-family: "Montserrat", sans-serif;
 }
