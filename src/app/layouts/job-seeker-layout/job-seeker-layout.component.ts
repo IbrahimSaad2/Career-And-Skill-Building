@@ -6,9 +6,9 @@ import { NavJobSeekerComponent } from "../../Components/nav-job-seeker/nav-job-s
 @Component({
   selector: 'app-blank-layout',
   imports: [NavJobSeekerComponent, RouterOutlet, FooterComponent, NavJobSeekerComponent],
-  templateUrl: './blank-layout.component.html',
-  styleUrl: './blank-layout.component.css'
+  templateUrl: './job-seeker-layout.component.html',
+  styleUrl: './job-seeker-layout.component.css'
 })
-export class BlankLayoutComponent {
+export class JobSeekerLayout {
 
 }

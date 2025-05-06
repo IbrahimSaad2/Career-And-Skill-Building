@@ -1,0 +1,30 @@
+.content{
+    margin-top: 100px;
+}
+.inputs{
+    background-color: #F5F5F5;
+    font-family: "Montserrat", sans-serif;
+
+}
+.inputs p{
+    font-size: 12px;
+    color: #656262;
+}
+.inputs button{
+    background-color: var(--main-color);
+    color: #fff;
+}
+.inputs h5{
+    font-family: "Montserrat", sans-serif;
+}
+.image img{
+    transform: scaleX(-1);
+}
+.forgot{
+    font-size: 12px;
+    color: #656262;
+    display: flex;
+    justify-content: end;
+    padding-bottom: 15px;
+
+}
