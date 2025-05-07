@@ -22,6 +22,7 @@ import { AuthEmployerLayoutComponent } from './layouts/auth-employer-layout/auth
 import path from 'path';
 import { Component } from '@angular/core';
 import { SignupEmployerComponent } from './Components/signup-employer/signup-employer.component';
+import { authGuard } from './Core/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -42,6 +43,7 @@ export const routes: Routes = [
       {path:'signup' , component:SignupEmployerComponent,title:'SignUp-Employer'}, 
 ]
   },
+  // canActivate:[authGuard] this is guard use when abdelrahman make apis
   {
     path: 'jobseeker',
     component: JobSeekerLayout,

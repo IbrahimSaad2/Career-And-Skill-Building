@@ -21,7 +21,7 @@ export class SignupComponent {
     Email : new FormControl(null , [Validators.email,Validators.required]),
     BirthDate : new FormControl(null , [Validators.required]),
     PhoneNumber : new FormControl(null , [Validators.required]),
-    Password : new FormControl(null , [Validators.required]),
+    Password : new FormControl(null , [Validators.required,Validators.pattern(/^[\w!@#$%^&*]{6,}$/)]),
     ConfirmPassword : new FormControl(null),
   },{validators:this.confrimPasswrd}); 
 
