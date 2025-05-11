@@ -21,43 +21,114 @@
     </div>
 </section>
 <section class="container-fluid text-center trakcs rounded mt-5 position-relative">
-  <div class="trakcsLink">
-    <a routerLink="../tracks">Trakcs <i class="fa-solid fa-arrow-right mt-4" style="color: #000000;"></i></a>
-  </div>
-    <div class="row g-4 d-flex justify-content-center">
-        <div class="col-md-4 mt-5">
-            <div class="card mx-auto my-4" style="width: 18rem;">
-                <img src="../../../assets/Img/backend.PNG" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Back-End</h5>
-                  <p class="card-text">This programme teaches languages like JavaScript and Python and data management tools like SQL. This hands-on, project-based learning style prepares you to work as a backend developer after graduation. Suitable for beginners.
-                    Apply Now</p>
-                  <a routerLink="../courseDetails" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
+    <div class="container">
+      <div>
+        <div class="pt-4 ms-4 text-start title">
+          <h3>Tracks</h3>
         </div>
-        <div class="col-md-4 my-5">
-            <div class="card mx-auto mb-4" style="width: 18rem;">
-                <img src="../../../assets/Img/backend.PNG" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Back-End</h5>
-                  <p class="card-text">This programme teaches languages like JavaScript and Python and data management tools like SQL. This hands-on, project-based learning style prepares you to work as a backend developer after graduation. Suitable for beginners.
-                    Apply Now</p>
-                  <a routerLink="../courseDetails" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
+        <div class="trakcsLink">
+          <a class="text-end" routerLink="../tracks">Trakcs <i class="fa-solid fa-arrow-right" style="color: #000000;"></i></a>
         </div>
-        <div class="col-md-4 my-5">
-            <div class="card mx-auto mb-4" style="width: 18rem;">
-                <img src="../../../assets/Img/backend.PNG" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Back-End</h5>
-                  <p class="card-text">This programme teaches languages like JavaScript and Python and data management tools like SQL. This hands-on, project-based learning style prepares you to work as a backend developer after graduation. Suitable for beginners.
-                    Apply Now</p>
-                  <a routerLink="../courseDetails" class="btn btn-primary">Go somewhere</a>
+      </div>
+      <div class="row g-4 d-flex justify-content-center">
+          <div class="col-md-4 mt-5">
+              <div class="card mx-auto my-4" style="width: 18rem;">
+                  <img src="../../../assets/Img/backend.PNG" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Back-End</h5>
+                    <p class="card-text">This programme teaches languages like JavaScript and Python and data management tools like SQL. This hands-on, project-based learning style prepares you to work as a backend developer after graduation. Suitable for beginners.
+                      Apply Now</p>
+                    <a routerLink="../courseDetails" class="btn btn-primary">Go somewhere</a>
+                  </div>
                 </div>
-              </div>
-        </div>
+          </div>
+          <div class="col-md-4 my-5">
+              <div class="card mx-auto mb-4" style="width: 18rem;">
+                  <img src="../../../assets/Img/backend.PNG" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Back-End</h5>
+                    <p class="card-text">This programme teaches languages like JavaScript and Python and data management tools like SQL. This hands-on, project-based learning style prepares you to work as a backend developer after graduation. Suitable for beginners.
+                      Apply Now</p>
+                    <a routerLink="../courseDetails" class="btn btn-primary">Go somewhere</a>
+                  </div>
+                </div>
+          </div>
+          <div class="col-md-4 my-5">
+              <div class="card mx-auto mb-4" style="width: 18rem;">
+                  <img src="./assets/Img/backend.PNG" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Back-End</h5>
+                    <p class="card-text">This programme teaches languages like JavaScript and Python and data management tools like SQL. This hands-on, project-based learning style prepares you to work as a backend developer after graduation. Suitable for beginners.
+                      Apply Now</p>
+                    <a routerLink="../courseDetails" class="btn btn-primary">Go somewhere</a>
+                  </div>
+                </div>
+          </div>
+      </div>
+
     </div>
 </section>
+<section class="carousel mt-5 container-fluid">
+  <owl-carousel-o [options]="customOptions">
+    <ng-template carouselSlide>  
+      <div class="item d-flex">
+        <img src="./assets/Img/Orange_logo.svg.png" alt="">
+        <div class="ms-4">
+          <h3>Orange</h3>
+          <p class="lead">
+            Orange Egypt is one of Egypt’s leading telecommunications providers, offering a comprehensive range of services including mobile voice and data, fixed internet, and digital solutions. Established in 1998 as Mobinil, the company rebranded to Orange Egypt in March 2016 following its acquisition by the global telecom group Orange S.A. 
+          </p>
+        </div>
+      </div>      
+           
+    </ng-template>    
+    <ng-template carouselSlide>  
+      <div class="item d-flex">
+          <img src="./assets/Img/images.jpeg" alt="">
+        <div class="ms-4 justify-content-center align-items-center">
+          <h3>Vodafon</h3>
+          <p class="lead">
+            is a leading telecommunications provider in Egypt, offering a wide range of services including mobile voice and data, fixed internet, and digital solutions. Established in 1998 as Click GSM, the company rebranded to Vodafone Egypt in 2002. As of November 2024, Vodafone Egypt serves approximately 45.9 million subscribers, making it the largest mobile operator in the country.           </p>
+        </div>
+      </div>        
+    </ng-template>    
+    <ng-template carouselSlide>  
+      <div class="item d-flex">
+        <img src="../../../assets/Img/relme.png" alt="">
+        <div class="ms-4 justify-content-center align-items-center">
+          <h3>Realme</h3>
+          <p class="lead">
+            Realme entered the Egyptian market in 2019 and quickly gained popularity for offering reliable and stylish smartphones at budget-friendly prices. By July 2019, Realme had secured a 3.3% market share in Egypt, with 5% of all mobile sales in the EGP 2000–5000 segment. The brand was awarded “Fastest Growing Brand on E-Commerce Platforms” at the 2019 E-Commerce Summit in Egypt.        
+          </p>
+          </div>
+      </div>        
+    </ng-template>    
+  </owl-carousel-o>
+</section>
 
+<section class="jobs container my-5">
+  <div class="title">
+    <h3>Latest Jobs</h3>
+  </div>
+  <div class="row g-4 mt-5">
+    <div class="col-md-3 post mx-3 rounded">
+      <div>
+        <a routerLink="">Business Developer</a>
+        <p>Cairo</p>
+        <p>5 Hours Ago</p>
+      </div>
+    </div>
+
+    <!-- <div class="col-md-3 post rounded">
+      <div>
+        <a routerLink="">Business Developer</a>
+        <p>Cairo</p>
+        <p>5 Hours Ago</p>
+      </div>
+    </div> -->
+  </div>
+</section> 
+
+<!-- <section class="feedback">
+
+</section> -->

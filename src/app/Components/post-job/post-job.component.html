@@ -1,0 +1,36 @@
+<div class="container mt-5">
+  <h3 class="mb-4">Post a New Job</h3>
+  <form [formGroup]="postJobForm" (ngSubmit)="submitJob()">
+    <div class="mb-3">
+      <label class="form-label">Job Title</label>
+      <input type="text" class="form-control" placeholder="Enter Job Title" formControlName="jobTitle">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Job Description</label>
+      <textarea class="form-control" formControlName="jobDescription" placeholder="Enter Job Descryption.." rows="4"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Location</label>
+      <input type="text" class="form-control" formControlName="location" placeholder="Enter Your Location!">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Salary</label>
+      <input type="number" class="form-control" formControlName="salary" placeholder="e.g 10000">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Job Type</label>
+      <select class="form-select" formControlName="jobType" >
+        <option>Full-Time</option>
+        <option>Part-Time</option>
+        <option>Remote</option>
+        <option>Internship</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!postJobForm.valid">Submit Job</button>
+  </form>
+</div>

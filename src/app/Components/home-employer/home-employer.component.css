@@ -1,0 +1,32 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.home-wrapper {
+  background-image: url('../../../assets/Img/home.jpg');
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+
+
+.card {
+  border-radius: 15px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-body i {
+  transition: transform 0.3s ease;
+}
+
+.card-body:hover i {
+  transform: scale(1.1);
+}
+}

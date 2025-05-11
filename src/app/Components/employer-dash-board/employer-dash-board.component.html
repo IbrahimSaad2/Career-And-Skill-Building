@@ -1,1 +1,82 @@
-<p>employer-dash-board works!</p>
+<div class="container mt-5">
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body d-flex flex-wrap justify-content-between align-items-center">
+      <div>
+        <h4 class="fw-bold mb-1">Welcome, Mohamed Hasan</h4>
+        <p class="mb-1"><i class="fas fa-building me-2 text-primary"></i>Company: <strong>Mohamed Tech</strong></p>
+        <p class="mb-1"><i class="fas fa-envelope me-2 text-secondary"></i>Email: <strong>mohamedgmail.com</strong></p>
+        <p class="mb-1"><i class="fas fa-phone me-2 text-success"></i>Phone: <strong>+201030511216</strong></p>
+      </div>
+      <div>
+        <a routerLink="/employer/details" class="btn btn-outline-secondary">
+          <i class="fas fa-edit me-1"></i>Edit Info
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center mb-5">
+    <h2 class="fw-bold">Employer Dashboard</h2>
+    <p class="text-muted">Manage your job posts, view insights, and track applicants.</p>
+  </div>
+
+  <div class="row g-4 mb-4">
+    <div class="col-md-4">
+      <div class="card text-white bg-primary shadow-sm h-100">
+        <div class="card-body text-center">
+          <i class="fas fa-briefcase fa-2x mb-2"></i>
+          <h5>Total Jobs Posted</h5>
+          <p class="display-6">12</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-white bg-success shadow-sm h-100">
+        <div class="card-body text-center">
+          <i class="fas fa-users fa-2x mb-2"></i>
+          <h5>Total Applicants</h5>
+          <p class="display-6">58</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-white bg-warning shadow-sm h-100">
+        <div class="card-body text-center">
+          <i class="fas fa-check-circle fa-2x mb-2"></i>
+          <h5>Open Positions</h5>
+          <p class="display-6">4</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card shadow-sm mb-4">
+    <div class="card-header bg-light">
+      <h5 class="mb-0">Latest Job Posts</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item d-flex justify-content-between">
+        <span><i class="fas fa-code me-2 text-primary"></i>Frontend Developer</span>
+        <small class="text-muted">2 days ago</small>
+      </li>
+      <li class="list-group-item d-flex justify-content-between">
+        <span><i class="fas fa-database me-2 text-success"></i>Backend Engineer</span>
+        <small class="text-muted">5 days ago</small>
+      </li>
+      <li class="list-group-item d-flex justify-content-between">
+        <span><i class="fas fa-pencil-ruler me-2 text-warning"></i>UI/UX Designer</span>
+        <small class="text-muted">1 week ago</small>
+      </li>
+    </ul>
+  </div>
+
+
+  <div class="text-center">
+    <a routerLink="/employer/post-job" class="btn btn-outline-primary me-2">
+      <i class="fas fa-plus-circle me-1"></i>Post New Job
+    </a>
+    <a routerLink="/employer/details" class="btn btn-outline-success">
+      <i class="fas fa-user-cog me-1"></i>Edit Employer Details
+    </a>
+  </div>
+</div>

@@ -1,1 +1,40 @@
-<p>home-employer works!</p>
+<div class="home-wrapper pt-5">
+  <div class="container">
+    <div class="text-center mb-5 text-white">
+      <h2 class="fw-bold">Welcome, Employer!</h2>
+      <p class="text-light">Manage your job posts, view applicants, and track progress.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body text-center">
+            <i class="fas fa-briefcase fa-3x mb-3 text-primary"></i>
+            <h5 class="card-title">Dashboard</h5>
+            <p class="card-text">View all your employer insights.</p>
+            <a routerLink="../dashboard" class="btn btn-outline-primary w-100">Go to Dashboard</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body text-center">
+            <i class="fas fa-user-tie fa-3x mb-3 text-success"></i>
+            <h5 class="card-title">Details</h5>
+            <p class="card-text">Edit your profile and company info.</p>
+            <a routerLink="../details" class="btn btn-outline-success w-100">Edit Details</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body text-center">
+            <i class="fas fa-plus-circle fa-3x mb-3 text-warning"></i>
+            <h5 class="card-title">Post Job</h5>
+            <p class="card-text">Create a new job post.</p>
+            <a routerLink="../post-job" class="btn btn-outline-warning w-100">Post a Job</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

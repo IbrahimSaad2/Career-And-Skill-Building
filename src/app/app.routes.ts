@@ -23,6 +23,7 @@ import path from 'path';
 import { Component } from '@angular/core';
 import { SignupEmployerComponent } from './Components/signup-employer/signup-employer.component';
 import { authGuard } from './Core/guards/auth.guard';
+import { PostJobComponent } from './Components/post-job/post-job.component';
 
 export const routes: Routes = [
   {
@@ -82,6 +83,7 @@ export const routes: Routes = [
       {path:'home',component:HomeEmployerComponent,title:'Home-Employeer'},
       {path:'dashboard',component:EmployerDashBoardComponent,title:'Dashboard-Employeer'},
       {path:'details',component:DetailsEmployerComponent,title:'Details-Employeer'},
+      { path: 'post-job', component: PostJobComponent , title:'post-Job'},
       { path: '**', component: NotfoundComponent },
 
     ]

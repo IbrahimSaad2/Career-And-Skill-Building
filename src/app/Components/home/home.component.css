@@ -28,7 +28,59 @@
 .trakcs .trakcsLink a{
     color: black;
     text-decoration: none;
-    position: absolute;
-    right: 15px;
-    
+    display: block;
+    text-align: right;
+}
+.trakcs .title{
+    font-family: "Montserrat", sans-serif;
+}
+.trakcs .title::after {
+    content: "";
+    display: block;
+    width: 55px;
+    height: 5px;
+    background-color: #000;
+    position: relative;
+    left: 3px;
+    bottom: 5px;
+}
+
+.carousel{
+    background-image: url(../../../assets/Img/home.jpg);
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    color: #fff;
+}
+.carousel .item {
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+  }
+  
+  
+.carousel .item img{
+    width: 20%;
+}
+.jobs .title::after {
+    content: "";
+    display: block;
+    width: 75px;
+    height: 5px;
+    background-color: #000;
+    position: relative;
+    left: 1px;
+    bottom: 5px;
+}
+.jobs a{
+    text-decoration: none;
+    color: var(--main-color);
+}
+.jobs .post{
+    border: #ddd solid 1px;
+    margin-right: 1rem;
+    padding: 1rem;
+
 }
