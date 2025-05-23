@@ -16,33 +16,54 @@ export class SignupComponent {
   private readonly _FormBuilder = inject(FormBuilder)
 
   SignupForm:FormGroup = this._FormBuilder.group({
-    FirstName:[null , [Validators.required,Validators.minLength(3),Validators.maxLength(10)]],
-    LastName : new FormControl(null,[Validators.required,Validators.minLength(3),Validators.maxLength(10)]),
-    Email : new FormControl(null , [Validators.email,Validators.required]),
-    BirthDate : new FormControl(null , [Validators.required]),
-    PhoneNumber : new FormControl(null , [Validators.required]),
-    Password : new FormControl(null , [Validators.required,Validators.pattern(/^[\w!@#$%^&*]{6,}$/)]),
+    firstName:[null , [Validators.required,Validators.minLength(3),Validators.maxLength(10)]],
+    lastName : new FormControl(null,[Validators.required,Validators.minLength(3),Validators.maxLength(10)]),
+    email : new FormControl(null , [Validators.email,Validators.required]),
+    educationLevel : new FormControl(null , [Validators.required]),
+    phoneNumber : new FormControl(null , [Validators.required]),
+    password : new FormControl(null , [Validators.required,Validators.pattern(/^[\w!@#$%^&*]{6,}$/)]),
     ConfirmPassword : new FormControl(null),
   },{validators:this.confrimPasswrd}); 
 
-
-  submit():void{
-    if(this.SignupForm.valid)
-      {
-      console.log(this.SignupForm.value);
-      // this._AuthService.postsignup(this.SignupForm.value).subscribe({
-      //   next:(res)=>{
-      //     console.log(res);
-      //   },
-      //   error:(err)=>{
-      //     console.log(err);
-      //   }
-      // })
-    }
+  saveFormToLocalStorage(): void {
+    console.log('hello')
+  if (this.SignupForm.valid) {
+    const formData = this.SignupForm.value;
+    localStorage.setItem('signupFormData', JSON.stringify(formData));
+    console.log('Form data saved to localStorage');
+  } else {
+    console.log('Form is invalid, cannot save');
   }
+}
+
+
+  
+  
+
+
+
+
+//   {
+//   "userName": "string",
+//   "address": {
+//     "street": "string",
+//     "city": "string",
+//     "country": "string"
+//   },
+//   "pictureUrl": "string",
+//   "email": "user@example.com",
+//   "password": "string",
+//   "phoneNumber": "string",
+//   "firstName": "string",
+//   "lastName": "string",
+//   "preferredJobTitle": "string",
+//   "resumeUrl": "string",
+//   "userGoal": "string",
+//   "educationLevel": 1
+// }
 
 confrimPasswrd(g:AbstractControl){
-  if(g.get('Password')?.value === g.get('ConfirmPassword')?.value){
+  if(g.get('password')?.value === g.get('ConfirmPassword')?.value){
     return null
   }
   else{

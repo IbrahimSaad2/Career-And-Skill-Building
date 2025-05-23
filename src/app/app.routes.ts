@@ -84,8 +84,8 @@ export const routes: Routes = [
       {path:'dashboard',component:EmployerDashBoardComponent,title:'Dashboard-Employeer'},
       {path:'details',component:DetailsEmployerComponent,title:'Details-Employeer'},
       { path: 'post-job', component: PostJobComponent , title:'post-Job'},
-      { path: '**', component: NotfoundComponent },
-
     ]
-  }
+  },
+  { path: '**', component: NotfoundComponent }
+
 ];

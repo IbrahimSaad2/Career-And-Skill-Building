@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IUserData } from '../interfaces/iuser-data';
+import { enviornment } from './environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class AuthService {
 
 
   postsignup(data:object):Observable<any>{
-    return this._HttpClient.post('api',data)
+    return this._HttpClient.post(`${enviornment.baseUrl}/api/Authentication/RegisterRegularUser`,data)
   }
   postlogin(data:object):Observable<any>{
     return this._HttpClient.post('api',data)

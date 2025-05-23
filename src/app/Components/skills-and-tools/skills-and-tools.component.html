@@ -4,90 +4,105 @@
     </div>
 </section>
 <section class="container data"> 
-  <form class="my-5">
-  <div class="row">
-    <div class="col-md-4">
-      <input type="text" placeholder="Country" class="form-control">
-    </div>
-    <div class="col-md-4">
-      <input type="text" placeholder="City" class="form-control">
-    </div>
-    <div class="col-md-4">
-      <input type="number" placeholder="PhoneNumber" class="form-control">
-    </div>
-  </div>  
-  <div class="btn-group mt-4" role="group" aria-label="Basic radio toggle button group w-25">
-    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-    <label class="btn btn-outline-primary" for="btnradio1">Male</label>
-  
-    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-    <label class="btn btn-outline-primary" for="btnradio2">FeMale</label>
+<form [formGroup]="SignupFormStep2" (ngSubmit)="submit()" novalidate>
+  <!-- Username -->
+  <div class="form-group mb-3">
+    <label for="userName">Username</label>
+    <input
+      id="userName"
+      type="text"
+      formControlName="userName"
+      class="form-control"
+      placeholder="Enter your username"
+    />
+    @if (SignupFormStep2.get('userName')?.touched && SignupFormStep2.get('userName')?.invalid) {
+      <div class="text-danger">Username is required.</div>
+    }
   </div>
-    <div class="dropdown major w-100 my-5">
-      <button
-        class="btn text-main dropdown-toggle"
-        type="button"
-        id="dropdownMenuButton"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
-        Majors
-      </button>
-      <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
-        <li class="dropdown-item">Computer Science</li>
-        <li class="dropdown-item">Engineer</li>
-        <li class="dropdown-item">Bis</li>
-        <li class="dropdown-item">Business</li>
-        <li class="dropdown-item">Science</li>
-      </ul>
-    </div>
-    <div class="dropdown major w-100 my-5">
-      <button
-        class="btn text-main dropdown-toggle"
-        type="button"
-        id="dropdownMenuButton"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
-        Degree
-      </button>
-      <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
-        <li class="dropdown-item">Associate degree (undergraduate)</li>
-        <li class="dropdown-item">Bachelor’s degree (undergraduate)</li>
-        <li class="dropdown-item">Master’s degree (graduate)</li>
-        <li class="dropdown-item">Doctoral degree (graduate)</li>
-      </ul>
-    </div>
-    <div class="dropdown major w-100 my-5">
-      <button
-        class="btn text-main dropdown-toggle"
-        type="button"
-        id="dropdownMenuButton"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
-      University
-      </button>
-      <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
-        <li class="dropdown-item">Cairo University </li>
-        <li class="dropdown-item">Misr University For Science And Technology </li>
-        <li class="dropdown-item">MSA University </li>
-        <li class="dropdown-item">Ain Shams University</li>
-        <li class="dropdown-item">Ahram Canadian University </li>
-        <li class="dropdown-item">MTI University</li>
-        <li class="dropdown-item">6 octoper University </li>
-        <li class="dropdown-item">Helwan University</li>
-      </ul>
-    </div>
-    <div class="skills">
-      <textarea name="" id="" placeholder="Skills" class="form-control"></textarea>
-    </div>
-    <div class="mt-4">
-      <input type="file" placeholder="Cv" class="form-control">
-    </div>
-    <div class="d-flex justify-content-end">
-      <button class="btn mt-5 submit px-4" routerLink="../jobSeekerDashboard">Submit</button>
 
-    </div>
-  </form>
+
+    <!-- Address Group -->
+<div formGroupName="address">
+  <div class="row">
+      <div class="form-group mb-2 col-md-4">
+    <label for="street">Street</label>
+    <input id="street" type="text" formControlName="street" class="form-control" />
+    @if (SignupFormStep2.get('address.street')?.touched && SignupFormStep2.get('address.street')?.invalid) {
+      <div class="text-danger">Street is required.</div>
+    }
+      </div>
+
+  <div class="form-group mb-2 col-md-4">
+    <label for="city">City</label>
+    <input id="city" type="text" formControlName="city" class="form-control" />
+    @if (SignupFormStep2.get('address.city')?.touched && SignupFormStep2.get('address.city')?.invalid) {
+      <div class="text-danger">City is required.</div>
+    }
+  </div>
+
+  <div class="form-group mb-2 col-md-4">
+    <label for="country">Country</label>
+    <input id="country" type="text" formControlName="country" class="form-control" />
+    @if (SignupFormStep2.get('address.country')?.touched && SignupFormStep2.get('address.country')?.invalid) {
+      <div class="text-danger">Country is required.</div>
+    }
+  </div>
+  </div>
+</div>
+
+  <!-- Preferred Job Title -->
+  <div class="form-group my-3">
+    <label for="preferredJobTitle">Preferred Job Title</label>
+    <input
+      id="preferredJobTitle"
+      type="text"
+      formControlName="preferredJobTitle"
+      class="form-control"
+      placeholder="Enter job title"
+    />
+    @if (SignupFormStep2.get('preferredJobTitle')?.touched && SignupFormStep2.get('preferredJobTitle')?.invalid) {
+      <div class="text-danger">Job title is required.</div>
+    }
+  </div>
+
+  <!-- Resume URL -->
+  <div class="form-group my-3">
+    <label for="resumeUrl">Resume URL</label>
+    <input class="form-control" type="file" (change)="onFileSelect($event, 'pictureUrl')" />
+    @if (SignupFormStep2.get('resumeUrl')?.touched && SignupFormStep2.get('resumeUrl')?.invalid) {
+      <div class="text-danger">Resume URL is required.</div>
+    }
+  </div>
+
+  <!-- Picture URL -->
+  <div class="form-group my-3">
+    <label for="pictureUrl">Picture URL</label>
+    <input class="form-control" type="file" (change)="onFileSelect($event, 'resumeUrl')" />
+
+    @if (SignupFormStep2.get('pictureUrl')?.touched && SignupFormStep2.get('pictureUrl')?.invalid) {
+      <div class="text-danger">Picture URL is required.</div>
+    }
+  </div>
+
+  <!-- User Goal -->
+  <div class="form-group my-3">
+    <label for="userGoal">Your Goal</label>
+    <textarea
+      id="userGoal"
+      formControlName="userGoal"
+      class="form-control"
+      rows="3"
+      placeholder="What are your goals?"
+    ></textarea>
+    @if (SignupFormStep2.get('userGoal')?.touched && SignupFormStep2.get('userGoal')?.invalid) {
+      <div class="text-danger">User goal is required.</div>
+    }
+  </div>
+
+
+  <button type="submit" routerLink="../../login" [disabled]="SignupFormStep2.invalid" class="btn btn-primary w-100">Continue</button>
+</form>
+
+
+
 </section>

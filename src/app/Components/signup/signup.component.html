@@ -7,19 +7,19 @@
             <h3 class="mt-3 text-center">SignUp</h3>
             <h5 class="text-start my-3">Personal Information</h5>
             
-            <form (ngSubmit)="submit()" [formGroup] = "SignupForm">
+            <form (ngSubmit)="saveFormToLocalStorage()" [formGroup] = "SignupForm">
                 <div class="my-3 text-start">
                     <label for="firstname">First Name</label>
-                    <input formControlName = "FirstName" type="text" id="firstname" class="rounded-2 form-control w-100 my-2">
-                    @if (SignupForm.get('FirstName')?.errors && SignupForm.get('FirstName')?.touched) {
+                    <input formControlName = "firstName" type="text" id="firstname" class="rounded-2 form-control w-100 my-2">
+                    @if (SignupForm.get('firstName')?.errors && SignupForm.get('firstName')?.touched) {
                         <div class="alert alert-danger">
-                            @if (SignupForm.get('FirstName')?.getError('required')) {
+                            @if (SignupForm.get('firstName')?.getError('required')) {
                                 <p class="m-0">First Name Is Required</p>
                             }
-                            @else if (SignupForm.get('FirstName')?.getError('minlength')) {
+                            @else if (SignupForm.get('firstName')?.getError('minlength')) {
                                 <p class="m-0">First Name Should Be More Than Or Equal 3 Chars</p>
                             }
-                            @else if (SignupForm.get('FirstName')?.getError('maxlength'))
+                            @else if (SignupForm.get('firstName')?.getError('maxlength'))
                             {
                                     <p class="m-0">First Name Should Be less Than Or Equal 10 Chars</p>
                                 
@@ -29,16 +29,16 @@
                 </div>
                 <div class="my-3 text-start">
                     <label for="lastname">Last Name</label>
-                    <input formControlName = "LastName" type="text" id="lastname" class="rounded-2 form-control w-100 my-2">
-                    @if (SignupForm.get('LastName')?.errors && SignupForm.get('LastName')?.touched) {
+                    <input formControlName = "lastName" type="text" id="lastname" class="rounded-2 form-control w-100 my-2">
+                    @if (SignupForm.get('lastName')?.errors && SignupForm.get('lastName')?.touched) {
                         <div class="alert alert-danger">
-                            @if (SignupForm.get('LastName')?.getError('required')) {
+                            @if (SignupForm.get('lastName')?.getError('required')) {
                                 <p class="m-0">Last Name Is Required</p>
                             }
-                            @else if (SignupForm.get('LastName')?.getError('minlength')) {
+                            @else if (SignupForm.get('lastName')?.getError('minlength')) {
                                 <p class="m-0">Last Name Should Be More Than Or Equal 3 Chars</p>
                             }
-                            @else if (SignupForm.get('LastName')?.getError('maxlength'))
+                            @else if (SignupForm.get('lastName')?.getError('maxlength'))
                             {
                                     <p class="m-0">Last Name Should Be less Than Or Equal 10 Chars</p>
                                 
@@ -48,13 +48,13 @@
                 </div>
                 <div class="my-3 text-start">
                     <label for="email">Email</label>
-                    <input formControlName = "Email" type="email" id="email" class="rounded-2 form-control w-100 my-2">
-                    @if (SignupForm.get('Email')?.errors && SignupForm.get('Email')?.touched) {
+                    <input formControlName = "email" type="email" id="email" class="rounded-2 form-control w-100 my-2">
+                    @if (SignupForm.get('email')?.errors && SignupForm.get('email')?.touched) {
                         <div class="alert alert-danger mt-2">
-                            @if (SignupForm.get('Email')?.getError('required')) {
+                            @if (SignupForm.get('email')?.getError('required')) {
                                 <p class="m-0">Email Is Required</p>
                             }
-                            @else if (SignupForm.get('Email')?.getError('email')) {
+                            @else if (SignupForm.get('email')?.getError('email')) {
                                 <p class="m-0">Email not Valid</p>
                                 <p class="m-0">example&#64;xxxx.com</p>
                             }
@@ -62,22 +62,31 @@
                     }
                 </div>
                 <div class="my-3 text-start">
-                    <label for="birthdate">Birth Date</label>
-                    <input formControlName = "BirthDate" type="date" id="birthdate" class="rounded-2 form-control w-100 my-2">
-                    @if (SignupForm.get('BirthDate')?.errors && SignupForm.get('BirthDate')?.touched) {
-                        <div class="alert alert-danger mt-2">
-                            @if (SignupForm.get('BirthDate')?.getError('required')) {
-                                <p class="m-0">Birth Date Is Required</p>
-                            }
-                        </div>
+                <label for="educationLevel">Education Level</label>
+                <select id="educationLevel" class="form-control rounded-2 w-100 my-2" formControlName="educationLevel">
+                    <option value="" disabled selected>Select Education Level</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <!-- Validation message -->
+                @if (SignupForm.get('educationLevel')?.errors && SignupForm.get('educationLevel')?.touched) {
+                    <div class="alert alert-danger mt-2">
+                    @if (SignupForm.get('educationLevel')?.getError('required')) {
+                        <p class="m-0">Education Level is required</p>
                     }
+                    </div>
+                }
                 </div>
+
                 <div class="my-3 text-start">
                     <label for="phonenumber">Phone Number</label>
-                    <input formControlName = "PhoneNumber" type="number" id="phonenumber" class="rounded-2 form-control w-100 my-2">
-                    @if (SignupForm.get('Phone Number')?.errors && SignupForm.get('Phone Number')?.touched) {
+                    <input formControlName = "phoneNumber" type="number" id="phonenumber" class="rounded-2 form-control w-100 my-2">
+                    @if (SignupForm.get('phone Number')?.errors && SignupForm.get('phone Number')?.touched) {
                         <div class="alert alert-danger mt-2">
-                            @if (SignupForm.get('Phone Number')?.getError('required')) {
+                            @if (SignupForm.get('phone Number')?.getError('required')) {
                                 <p class="m-0">Phone Number Is Required</p>
                             }
                         </div>
@@ -85,10 +94,10 @@
                 </div>
                 <div class="my-3 text-start">
                     <label for="password">Password</label>
-                    <input formControlName = "Password" type="password" id="password" class="rounded-2 form-control w-100 my-2">
-                    @if (SignupForm.get('Password')?.errors && SignupForm.get('Password')?.touched) {
+                    <input formControlName = "password" type="password" id="password" class="rounded-2 form-control w-100 my-2">
+                    @if (SignupForm.get('password')?.errors && SignupForm.get('password')?.touched) {
                         <div class="alert alert-danger mt-2">
-                            @if (SignupForm.get('Password')?.getError('required')) {
+                            @if (SignupForm.get('password')?.getError('required')) {
                                 <p class="m-0">Password Is Required</p>
                             }
                         </div>
@@ -102,7 +111,7 @@
                     }
                 </div>
                 <p class="text-center">Already Have an Account ? <a routerLink="../login">Log in</a></p>
-                <button routerLink="../skillsAndTools" [disabled]="SignupForm.invalid" type="submit" class="btn w-75 mb-3">Sign Up</button>
+                <button routerLink="../jobseeker/skillsAndTools" [disabled]="SignupForm.invalid" type="submit" class="btn w-75 mb-3">Sign Up</button>
             </form>
         </section>
     </div>
