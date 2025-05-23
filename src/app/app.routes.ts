@@ -84,7 +84,6 @@ export const routes: Routes = [
     ],
   },
   {
-<<<<<<< HEAD
     path:'employer',
     component:EmployerlayoutComponent,
     children:[
@@ -97,29 +96,4 @@ export const routes: Routes = [
   },
   { path: '**', component: NotfoundComponent }
 
-=======
-    path: 'employer',
-    component: EmployerlayoutComponent,
-    children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
-      {
-        path: 'home',
-        component: HomeEmployerComponent,
-        title: 'Home-Employeer',
-      },
-      {
-        path: 'dashboard',
-        component: EmployerDashBoardComponent,
-        title: 'Dashboard-Employeer',
-      },
-      {
-        path: 'details',
-        component: DetailsEmployerComponent,
-        title: 'Details-Employeer',
-      },
-      { path: 'post-job', component: PostJobComponent, title: 'post-Job' },
-    ],
-  },
-  { path: '**', component: NotfoundComponent },
->>>>>>> afe77d928d665d54ed68f8e2e411fcb3198c2299
 ];

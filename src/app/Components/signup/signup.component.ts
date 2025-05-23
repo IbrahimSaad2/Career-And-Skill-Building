@@ -22,8 +22,7 @@ export class SignupComponent {
     educationLevel : new FormControl(null , [Validators.required]),
     phoneNumber : new FormControl(null , [Validators.required]),
     password : new FormControl(null , [Validators.required,Validators.pattern(/^[\w!@#$%^&*]{6,}$/)]),
-    ConfirmPassword : new FormControl(null),
-  },{validators:this.confrimPasswrd}); 
+  }); 
 
   saveFormToLocalStorage(): void {
     console.log('hello')

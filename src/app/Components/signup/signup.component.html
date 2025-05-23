@@ -83,7 +83,7 @@
 
                 <div class="my-3 text-start">
                     <label for="phonenumber">Phone Number</label>
-                    <input formControlName = "phoneNumber" type="number" id="phonenumber" class="rounded-2 form-control w-100 my-2">
+                    <input formControlName = "phoneNumber" type="text" id="phonenumber" class="rounded-2 form-control w-100 my-2">
                     @if (SignupForm.get('phone Number')?.errors && SignupForm.get('phone Number')?.touched) {
                         <div class="alert alert-danger mt-2">
                             @if (SignupForm.get('phone Number')?.getError('required')) {
@@ -105,10 +105,7 @@
                 </div>
                 <div class="my-3 text-start">
                     <label for="confirmpassword">Confirm Password</label>
-                    <input formControlName = "ConfirmPassword" type="password" id="confirmpassword" class="rounded-2 form-control w-100 my-2">
-                    @if (SignupForm.getError('mismatch')&&SignupForm.get('ConfirmPassword')?.touched) {
-                        <p class="alert alert-danger m-0">Password Confrmation Incorrect</p>
-                    }
+                    <input type="password" id="confirmpassword" class="rounded-2 form-control w-100 my-2">
                 </div>
                 <p class="text-center">Already Have an Account ? <a routerLink="../login">Log in</a></p>
                 <button routerLink="../jobseeker/skillsAndTools" [disabled]="SignupForm.invalid" type="submit" class="btn w-75 mb-3">Sign Up</button>
