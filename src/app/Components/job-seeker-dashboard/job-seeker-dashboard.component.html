@@ -3,8 +3,43 @@
         <h2>Front End Web Based on Angular</h2>
     </div>
 </section>
-<section class="container me-5">
-    <div class="row">
+<section>
+    <div class="container">
+        <div class="userInfo card mb-5">
+<div class="row align-items-center text-center" >
+  <!-- User Info Section -->
+  <div class="col-md-6 d-flex justify-content-center align-items-center mt-3">
+    <img class="rounded-circle img-fluid" style="width: 40%;" src="./assets/Img/user.png" alt="User">
+    <div class="ms-4 text-start">
+      <h5>Name: <span class="font-monospace">{{ user.name }}</span></h5>
+      <h5>Job Title: <span class="font-monospace">{{ user.JobTitle }}</span></h5>
+      <h5>Education Level: <span class="font-monospace">{{ user.EducationLevel }}</span></h5>
+    </div>
+  </div>
+
+  <!-- Chart Section -->
+  <div class="col-md-6 d-flex justify-content-end align-items-center mt-3">
+    <div class="text-center fw-bold">
+      <h5 class="mb-1">Track</h5>
+      <h5 class="mb-3">Complete</h5>
+      <apx-chart
+        [series]="chartOptions.series"
+        [chart]="chartOptions.chart"
+        [labels]="chartOptions.labels"
+        [plotOptions]="chartOptions.plotOptions"
+        [fill]="chartOptions.fill"
+        [stroke]="chartOptions.stroke"
+        [dataLabels]="chartOptions.dataLabels">
+      </apx-chart>
+    </div>
+  </div>
+</div>
+
+        </div>
+    </div>
+</section>
+<section class=" container ">
+    <!-- <div class="row">
         <div class="col-md-4 trackComplete mt-5">
             <h5>Track Complete</h5>
             <div class="circular-progress">
@@ -12,28 +47,82 @@
             </div>
         </div>
         <div class="col-md-8 deatails">
-            <div class="row">
-                <div class="col-md-6 text-center my-5">
+            <div class="row ">
+                <div class="col-md-5 text-center info my-5">
                     <h5>Total hour Spent</h5>
                     <p>35h</p>
                 </div>
-                <div class="col-md-6 text-center my-5">
+                <div class="col-md-5 mx-5 text-center info my-5">
                     <h5>number of <br /> remaining courses</h5>
                     <p>3</p>
                 </div>
-                <div class="col-md-6 text-center mt-5 status">
+                <div class="col-md-5 text-center info mt-5 status">
                     <h5>Status</h5>
                     <p>In Progress</p>
                 </div>
-                <div class="col-md-6 text-center mt-5">
+                <div class="col-md-5 mx-5 text-center info mt-5">
                     <h5>To Do</h5>
                     <p>12h</p>
                 </div>
             </div>
         </div>
+    </div> -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div
+                                class="border rounded-2 d-flex justify-content-between align-items-center d-lg-block p-3 mb-2 mb-lg-0" style="background-color: rgb(244, 244, 244);
+">
+                                <p class="text-muted text-uppercase m-0">Courses Taken</p>
+                                <h3 class="py-2 fw-normal m-0">10</h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div style="background-color: rgb(244, 244, 244);"
+                                class="border rounded-2 d-flex justify-content-between align-items-center d-lg-block p-3 mb-2 mb-lg-0" >
+                                <p class="text-muted text-uppercase m-0">Track</p>
+                                <h3 class=" py-2 fw-normal m-0">Front End</h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div style="background-color: rgb(244, 244, 244);"
+                                class="border rounded-2 d-flex justify-content-between align-items-center d-lg-block p-3 mb-2 mb-lg-0">
+                                <p class="text-muted text-uppercase m-0">Remaining Courses</p>
+                                <h3 class="py-2 fw-normal m-0">5</h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div style="background-color: rgb(244, 244, 244);"
+                                class="border rounded-2 d-flex justify-content-between align-items-center d-lg-block p-3 mb-2 mb-lg-0">
+                                <p class="text-muted text-uppercase m-0">To Do</p>
+                                <h3 class="py-2 fw-normal m-0">12h</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+</section>
+
+
+<section class="container skill mt-5">
+    <div class="py-3">
+        <h4>Skills And Tools</h4>
+    </div>
+    <div class="d-flex tools">
+        <p>Html</p>
+        <p>css</p>
+        <p>JS</p>
+        <p>TS</p>
+        <p>C#</p>
+        <p>Software Engineer</p>
+        <p>Web Design</p>
+        <p>Git</p>
+        <p>Agile</p>
+        <p>Angular</p>
+        <p>Computer Scince</p>
+        <p>Sql</p>
     </div>
 </section>
-<section>
+<!-- <section>
     <div class="chart-container mt-2">
         <div class="bar-wrapper">
             <div class="bar">
@@ -78,7 +167,7 @@
             <div class="label">Frameworks</div>
         </div>
     </div>
-</section>
+</section> -->
 <section class="me-auto button ">
     <a routerLink="../courseDetails" class="btn me-5">Continue Track</a>
 </section>
