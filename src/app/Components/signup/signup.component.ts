@@ -21,7 +21,8 @@ export class SignupComponent {
     email : new FormControl(null , [Validators.email,Validators.required]),
     educationLevel : new FormControl(null , [Validators.required]),
     phoneNumber : new FormControl(null , [Validators.required]),
-    password : new FormControl(null , [Validators.required,Validators.pattern(/^[\w!@#$%^&*]{6,}$/)]),
+    password : new FormControl(null , [Validators.required,  Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/)
+]),
   }); 
 
   saveFormToLocalStorage(): void {
@@ -60,13 +61,4 @@ export class SignupComponent {
 //   "userGoal": "string",
 //   "educationLevel": 1
 // }
-
-confrimPasswrd(g:AbstractControl){
-  if(g.get('password')?.value === g.get('ConfirmPassword')?.value){
-    return null
-  }
-  else{
-    return {mismatch:true}
-  }
-}
 }

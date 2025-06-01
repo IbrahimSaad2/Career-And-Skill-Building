@@ -6,7 +6,7 @@
         <div class="col-lg-4 border rounded-3 text-center py-4 inputs">
             <h1 class="mb-5">Login</h1>
             <h5 class="text-start">Login Information</h5>
-            <form [formGroup]="loginForm" class="input-group d-flex flex-column my-2">
+            <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()" class="input-group d-flex flex-column my-2">
                 <input type="email" formControlName="email" placeholder="Email" class="rounded-2 form-control w-100 my-3">
                 @if (loginForm.get('email')?.errors && loginForm.get('email')?.touched) {
                     <div class="alert alert-danger mt-2">
@@ -34,8 +34,11 @@
                     </div>
                 }
                 <a href="" class="forgot">Forgot Password</a>
+                <button [disabled]="loginForm.invalid" class="btn w-75 mb-3 rounded mx-auto mt-2">Login</button>
+                @if(messageError){
+                    <p class="alert alert-danger m-0 mt-2">{{messageError}}</p>
+                }
             </form>
-            <button [disabled]="loginForm.invalid"  routerLink="../jobseeker/home" class="btn w-75 mb-3">Login</button>
             <p>Don't Have a n Account ? <a routerLink="../signup">Sign Up</a></p>
             <p>Login As <a routerLink="../authEmployer/login">Employer</a></p>
         </div>

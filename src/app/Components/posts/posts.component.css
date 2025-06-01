@@ -14,7 +14,10 @@
   right: 20px;
   top: 45px;
 }
-.posts a {
+.posts h3 {
   color: #000;
   text-decoration: none;
+}
+.posts .job{
+  cursor: pointer;
 }

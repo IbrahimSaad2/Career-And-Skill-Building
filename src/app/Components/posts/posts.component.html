@@ -1,7 +1,7 @@
 <div class="mt-5 header container-fluid">
     <div class="text-center title">
         <h2>Open Opportunities</h2>
-        <p>Showing {{posts.length}} Opportunities</p>
+        <p>Showing Opportunities</p>
     </div>
     <div class="search  row justify-content-between">
         <div class="input col-md-3 ms-3">
@@ -12,9 +12,6 @@
             <label for="validationCustom04" class="form-label">Filtarion</label>
             <select class="form-select" id="validationCustom04" required >
             <option>Choose...</option>
-            @for (track of tracks; track $index) {
-                <option value="">{{track}}</option>
-            }
             </select>
             <div class="invalid-feedback">
             Please select a valid state.
@@ -25,21 +22,26 @@
 <div class="posts container ">
         @for (post of posts; track $index) {
             <div class="border-bottom row position-relative">
-                <div class="col-md-8 row">
-                    <a routerLink="../jobApplication"><h3 class="my-3">{{post.title}}</h3></a>
-                    <div class="col-md-2">
-                        <p>{{post.location}}</p>
+                <div class="row job" [routerLink]="['../jobApplication' , post.id]">
+                    <div class="col-md-8">
+                        <h3 class="my-3">{{post.name}}</h3>
                     </div>
-                    <div class="col-md-2">
-                        <p>{{post.since}}</p>
+                    <div class="col-md-2 position-relative mt-3 text-center" style="left: 20%; font-weight: 600;">
+                        <p>Posted {{getTimeAgo(post.createdAt)}}</p>
                     </div>
-                    <div class="col-md-4">
-                        <p>{{post.capacity}}</p>
+                    <div class="row">
+                    <div class="col-md-1 rounded mx-2 text-center" style="background-color: rgb(234, 234, 234);">
+                        <p class="position-relative" style="top: 7px;">{{post.location.city}}</p>
                     </div>
-                </div>
-                <div class="col-md-4 imagepost">
-                    <img [src]="post.imgSrc" alt="">
-                </div>
+                    <div class="col-md-1 rounded mx-2 text-center" style="background-color: rgb(234, 234, 234);">
+                        <p class="position-relative" style="top: 7px;">{{post.employmentType}}</p>
+                    </div>
+
+                    </div>
+                    <div class="col-md-12 mt-3">
+                        <p>{{post.description}}</p>
+                    </div>
+                </div>  
             </div>
         }
 </div> 

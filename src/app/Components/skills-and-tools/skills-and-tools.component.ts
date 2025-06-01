@@ -15,36 +15,22 @@ export class SkillsAndToolsComponent {
   userForm!: FormGroup;
 
   private fb = inject(FormBuilder);
-  private http = inject(HttpClient);
-    private readonly _AuthService = inject(AuthService);
+  private readonly _AuthService = inject(AuthService);
   
 
-
-
-  //   {
-//   "userName": "string",
-//   "address": {
-//     "street": "string",
-//     "city": "string",
-//     "country": "string"
-//   },
-//   "pictureUrl": "string",
-//   "email": "user@example.com",
-//   "password": "string",
-//   "phoneNumber": "string",
-//   "firstName": "string",
-//   "lastName": "string",
-//   "preferredJobTitle": "string",
-//   "resumeUrl": "string",
-//   "userGoal": "string",
-//   "educationLevel": 1
-// }
-
 SignupFormStep2 = this.fb.group({
-  userName: [null, [Validators.required]],
+  userName: [null, [
+    Validators.required,
+    Validators.minLength(3),
+    Validators.maxLength(20),
+    Validators.pattern(/^\S+$/)
+  ]],
   preferredJobTitle: [null, [Validators.required]],
-  resumeUrl: [null, [Validators.required]],
-  pictureUrl: [null, [Validators.required]],
+  resumeUrl: [null, [Validators.required,Validators.pattern(/.*\.pdf$/i)]],
+  pictureUrl: [null, [
+    Validators.required,
+    Validators.pattern(/.*\.(png|jpg|jpeg|gif|svg|webp)$/i)
+  ]],
   userGoal: [null, [Validators.required]],
   address: this.fb.group({
     street: [null, [Validators.required]],
@@ -53,26 +39,28 @@ SignupFormStep2 = this.fb.group({
   })
 });
 
+  messageError:string = "";
 
-onFileSelect(event: any, controlName: 'resumeUrl' | 'pictureUrl'): void {
-  const file = event.target.files[0];
-  if (!file) return;
 
-  const reader = new FileReader();
-  reader.onload = () => {
-    const base64String = reader.result as string;
-    this.SignupFormStep2.patchValue({ [controlName]: base64String });
-    this.SignupFormStep2.get(controlName)?.markAsTouched();
-  };
-  reader.readAsDataURL(file);
-}
+// onFileSelect(event: any, controlName: 'resumeUrl' | 'pictureUrl'): void {
+//   const file = event.target.files[0];
+//   if (!file) return;
+
+//   const reader = new FileReader();
+//   reader.onload = () => {
+//     const base64String = reader.result as string;
+//     this.SignupFormStep2.patchValue({ [controlName]: base64String });
+//     this.SignupFormStep2.get(controlName)?.markAsTouched();
+//   };
+//   reader.readAsDataURL(file);
+// }
 
 
 submit(): void {
       console.log('hello')
       console.log(this.SignupFormStep2.value)
       if (this.SignupFormStep2.valid) {
-    const step1Raw = localStorage.getItem('signupFormData');
+        const step1Raw = localStorage.getItem('signupFormData');
 
     if (!step1Raw) {
       console.error('Step 1 data not found in localStorage.');
@@ -96,7 +84,10 @@ submit(): void {
         console.log('Success:', res);
         localStorage.removeItem('signupFormData'); // optional cleanup
       },
-      error: err => console.error('Submission Error:', err)
+      error: (err) => {
+        console.log('Submission Error:', err)
+        this.messageError = err
+      }
     });
   } else {
     this.SignupFormStep2.markAllAsTouched();

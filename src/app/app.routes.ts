@@ -24,15 +24,22 @@ import { Component } from '@angular/core';
 import { SignupEmployerComponent } from './Components/signup-employer/signup-employer.component';
 import { authGuard } from './Core/guards/auth.guard';
 import { PostJobComponent } from './Components/post-job/post-job.component';
+import { LandingPageComponent } from './Components/landing-page/landing-page.component';
 
 export const routes: Routes = [
   {
     path: '',
     component: AuthLayoutComponent,
     children: [
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: '', redirectTo: 'landingPage', pathMatch: 'full' },
+      {path:'landingPage',component:LandingPageComponent,title:"Landing Page"},
       { path: 'login', component: LoginComponent, title: 'Login' },
       { path: 'signup', component: SignupComponent, title: 'SignUp' },
+      {
+        path: 'skillsAndTools',
+        component: SkillsAndToolsComponent,
+        title: 'TakeSkills',
+      },
     ],
   },
   {
@@ -52,8 +59,8 @@ export const routes: Routes = [
       },
     ],
   },
-  // canActivate:[authGuard] this is guard use when abdelrahman make apis
   {
+    canActivate:[authGuard], //this is guard use when abdelrahman make apis
     path: 'jobseeker',
     component: JobSeekerLayout,
     children: [
@@ -65,12 +72,7 @@ export const routes: Routes = [
         title: 'Course Details',
       },
       {
-        path: 'skillsAndTools',
-        component: SkillsAndToolsComponent,
-        title: 'TakeSkills',
-      },
-      {
-        path: 'jobApplication',
+        path: 'jobApplication/:id',
         component: JobApplicationComponent,
         title: 'Job Application',
       },
@@ -84,6 +86,7 @@ export const routes: Routes = [
     ],
   },
   {
+    canActivate:[authGuard],
     path:'employer',
     component:EmployerlayoutComponent,
     children:[

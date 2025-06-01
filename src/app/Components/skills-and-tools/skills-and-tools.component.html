@@ -16,7 +16,7 @@
       placeholder="Enter your username"
     />
     @if (SignupFormStep2.get('userName')?.touched && SignupFormStep2.get('userName')?.invalid) {
-      <div class="text-danger">Username is required.</div>
+      <div class="alert alert-danger mt-2">Username is required.</div>
     }
   </div>
 
@@ -28,7 +28,7 @@
     <label for="street">Street</label>
     <input id="street" type="text" formControlName="street" class="form-control" />
     @if (SignupFormStep2.get('address.street')?.touched && SignupFormStep2.get('address.street')?.invalid) {
-      <div class="text-danger">Street is required.</div>
+      <div class="alert alert-danger mt-2">Street is required.</div>
     }
       </div>
 
@@ -36,7 +36,7 @@
     <label for="city">City</label>
     <input id="city" type="text" formControlName="city" class="form-control" />
     @if (SignupFormStep2.get('address.city')?.touched && SignupFormStep2.get('address.city')?.invalid) {
-      <div class="text-danger">City is required.</div>
+      <div class="alert alert-danger mt-2">City is required.</div>
     }
   </div>
 
@@ -44,7 +44,7 @@
     <label for="country">Country</label>
     <input id="country" type="text" formControlName="country" class="form-control" />
     @if (SignupFormStep2.get('address.country')?.touched && SignupFormStep2.get('address.country')?.invalid) {
-      <div class="text-danger">Country is required.</div>
+      <div class="alert alert-danger mt-2">Country is required.</div>
     }
   </div>
   </div>
@@ -61,28 +61,42 @@
       placeholder="Enter job title"
     />
     @if (SignupFormStep2.get('preferredJobTitle')?.touched && SignupFormStep2.get('preferredJobTitle')?.invalid) {
-      <div class="text-danger">Job title is required.</div>
+      <div class="alert alert-danger mt-2">Job title is required.</div>
     }
   </div>
 
   <!-- Resume URL -->
-  <div class="form-group my-3">
-    <label for="resumeUrl">Resume URL</label>
-    <input class="form-control" type="file" (change)="onFileSelect($event, 'pictureUrl')" />
-    @if (SignupFormStep2.get('resumeUrl')?.touched && SignupFormStep2.get('resumeUrl')?.invalid) {
-      <div class="text-danger">Resume URL is required.</div>
-    }
-  </div>
+                <div class="my-3 text-start">
+                    <label for="resumeUrl">resume Url</label>
+                    <input formControlName = "resumeUrl" type="file" id="resumeUrl" class="rounded-2 form-control w-100 my-2">
+                    @if (SignupFormStep2.get('resumeUrl')?.errors) {
+                        <div class="alert alert-danger mt-2">
+                            @if (SignupFormStep2.get('resumeUrl')?.getError('required')) {
+                                <p class="m-0">resume Url Is Required</p>
+                            }
+                                @else if (SignupFormStep2.get('resumeUrl')?.getError('pattern')) {
+                                <p class="m-0">Invalid Resume URL format. It should end with .Pdf</p>
+                            }
+                        </div>
+                    }
+                </div>
 
   <!-- Picture URL -->
-  <div class="form-group my-3">
-    <label for="pictureUrl">Picture URL</label>
-    <input class="form-control" type="file" (change)="onFileSelect($event, 'resumeUrl')" />
-
-    @if (SignupFormStep2.get('pictureUrl')?.touched && SignupFormStep2.get('pictureUrl')?.invalid) {
-      <div class="text-danger">Picture URL is required.</div>
-    }
-  </div>
+                <div class="my-3 text-start">
+                    <label for="pictureUrl">Picture Url</label>
+                    <input formControlName = "pictureUrl" type="file" id="pictureUrl" class="rounded-2 form-control w-100 my-2">
+                    @if (SignupFormStep2.get('pictureUrl')?.errors) {
+                        <div class="alert alert-danger mt-2">
+                            @if (SignupFormStep2.get('pictureUrl')?.getError('required')) {
+                                <p class="m-0">Picture Url Is Required</p>
+                            }
+                                @else if (SignupFormStep2.get('pictureUrl')?.getError('pattern')) {
+                                <p class="m-0">Invalid image URL format. It should end with .png, .jpg, .jpeg, .gif, .svg, or .webp
+</p>
+                            }
+                        </div>
+                    }
+                </div>
 
   <!-- User Goal -->
   <div class="form-group my-3">
@@ -95,14 +109,14 @@
       placeholder="What are your goals?"
     ></textarea>
     @if (SignupFormStep2.get('userGoal')?.touched && SignupFormStep2.get('userGoal')?.invalid) {
-      <div class="text-danger">User goal is required.</div>
+      <div class="alert alert-danger mt-2">User goal is required.</div>
     }
   </div>
 
 
-  <button type="submit" routerLink="../../login" [disabled]="SignupFormStep2.invalid" class="btn btn-primary w-100">Continue</button>
+  <button type="submit" routerLink="../login" [disabled]="SignupFormStep2.invalid" class="btn btn-primary w-100">Continue</button>
+  @if(messageError){
+    <p class="alert alert-danger m-0 mt-2">{{messageError}}</p>
+  }
 </form>
-
-
-
 </section>

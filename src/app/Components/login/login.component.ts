@@ -20,35 +20,38 @@ export class LoginComponent {
 
   loginForm:FormGroup  = this._FormBuilder.group( {
     email:[null, [Validators.required,Validators.email]],
-    password: [null, [Validators.required, Validators.pattern(/^[\w!@#$%^&*]{6,}$/)]],
+    password: [null, [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/)]],
   } );
 
 
 
 
-loginSubmit():void{
-  if(this.loginForm.valid){
-    console.log(this.loginForm)
-    // this._AuthService.postlogin(this.loginForm.value).subscribe({
-    //   next:(res)=>{
-    //     console.log(res)
-    //     if(res.message == "success"){
-    //       localStorage.setItem('UserToken',res.token);
-    //       this._AuthService.decodeToken();
-    //       this._Router.navigate(['../jobseeker/home']);
-    //     }
-    //   },
-    //   error:(err)=>{
-    //     console.log(err)
-    //     this.messageError = err.error.message
-    //   }
-    // })
-  }
+loginSubmit(): void {
+  console.log("hello"); // Debug log
 
-  else{
-    // this.loginForm.setErrors({mismatch:true})
-    // this.loginForm.markAllAsTouched()
+  if (this.loginForm.valid) {
+    console.log(this.loginForm); // Log the form object
+
+    this._AuthService.postlogin(this.loginForm.value).subscribe({
+      next: (res) => {
+        console.log(res);
+          localStorage.setItem('token', res.token);
+          localStorage.setItem('details', JSON.stringify(res));
+          this._Router.navigate(['../jobseeker/home']);
+          console.log(res)
+        
+      },
+      error: (err) => {
+        console.log(err);
+        this.messageError = err;
+      }
+    });
+
+  } else {
+    this.loginForm.setErrors({ mismatch: true });
+    this.loginForm.markAllAsTouched();
   }
 }
+
 
 }

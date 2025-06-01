@@ -1,25 +1,23 @@
-<div class="container content my-5">
-    <div class="row signup justify-content-center align-items-center">
-        <div class="col-lg-7 image">
-            <img class="w-75" src="./assets/Img/undraw_team-page_q5am.svg" alt="">
-        </div>
-        <section class="col-lg-5 border rounded-3 py-2 inputs text-center">
+<section>
+    <div class="container content my-5">
+    <div class="signup justify-content-center align-items-center">
+        <section class=" border rounded-3 py-2 inputs text-center">
             <h3 class="mt-3 text-center">SignUp</h3>
-            <h5 class="text-start my-3">Company Information</h5>
+            <h5 class="text-start my-3 text-center">Company Information</h5>
             
-            <form (ngSubmit)="submit()" [formGroup] = "SignupForm">
-                <div class="my-3 text-start">
+            <form (ngSubmit)="submit()" [formGroup] = "SignupForm" class="row p-4">
+                <div class="my-3 text-start col-md-6">
                     <label for="companyName">Company Name</label>
-                    <input formControlName = "CompanyName" type="text" id="companyName" class="rounded-2 form-control w-100 my-2">
-                    @if (SignupForm.get('CompanyName')?.errors && SignupForm.get('CompanyName')?.touched) {
+                    <input formControlName = "companyName" type="text" id="companyName" class="rounded-2 form-control w-100 my-2">
+                    @if (SignupForm.get('companyName')?.errors && SignupForm.get('companyName')?.touched) {
                         <div class="alert alert-danger">
-                            @if (SignupForm.get('CompanyName')?.getError('required')) {
+                            @if (SignupForm.get('companyName')?.getError('required')) {
                                 <p class="m-0">Company Name Is Required</p>
                             }
-                            @else if (SignupForm.get('CompanyName')?.getError('minlength')) {
+                            @else if (SignupForm.get('companyName')?.getError('minlength')) {
                                 <p class="m-0">Company Name Should Be More Than Or Equal 3 Chars</p>
                             }
-                            @else if (SignupForm.get('CompanyName')?.getError('maxlength'))
+                            @else if (SignupForm.get('companyName')?.getError('maxlength'))
                             {
                                     <p class="m-0">Company Name Should Be less Than Or Equal 20 Chars</p>
                                 
@@ -27,53 +25,172 @@
                         </div>
                     }
                 </div>
-                <div class="my-3 text-start">
+                <div class="my-3 text-start col-md-6">
                     <label for="email">Company Email</label>
-                    <input formControlName = "CompanyEmail" type="email" id="email" class="rounded-2 form-control w-100 my-2">
-                    @if (SignupForm.get('Email')?.errors && SignupForm.get('Email')?.touched) {
+                    <input formControlName = "email" type="email" id="email" class="rounded-2 form-control w-100 my-2">
+                    @if (SignupForm.get('email')?.errors && SignupForm.get('email')?.touched) {
                         <div class="alert alert-danger mt-2">
-                            @if (SignupForm.get('Email')?.getError('required')) {
+                            @if (SignupForm.get('email')?.getError('required')) {
                                 <p class="m-0">Email Is Required</p>
                             }
-                            @else if (SignupForm.get('Email')?.getError('email')) {
+                            @else if (SignupForm.get('email')?.getError('email')) {
                                 <p class="m-0">Email not Valid</p>
                                 <p class="m-0">example&#64;xxxx.com</p>
                             }
                         </div>
                     }
                 </div>
-                <div class="my-3 text-start">
+                <div class="my-3 text-start col-md-6">
+                    <label for="userName">User Name</label>
+                    <input formControlName = "userName" type="text" id="userName" class="rounded-2 form-control w-100 my-2">
+                    @if (SignupForm.get('userName')?.errors && SignupForm.get('userName')?.touched) {
+                        <div class="alert alert-danger">
+                            @if (SignupForm.get('userName')?.getError('required')) {
+                                <p class="m-0">User Name Is Required</p>
+                            }
+                            @else if (SignupForm.get('userName')?.getError('minlength')) {
+                                <p class="m-0">Company Name Should Be More Than Or Equal 3 Chars</p>
+                            }
+                            @else if (SignupForm.get('userName')?.getError('maxlength'))
+                            {
+                                    <p class="m-0">Company Name Should Be less Than Or Equal 20 Chars</p>
+                                
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="my-3 text-start col-md-6">
                     <label for="phonenumber">Phone Number</label>
-                    <input formControlName = "PhoneNumber" type="number" id="phonenumber" class="rounded-2 form-control w-100 my-2">
-                    @if (SignupForm.get('Phone Number')?.errors && SignupForm.get('Phone Number')?.touched) {
+                    <input formControlName = "phoneNumber" type="text" id="phonenumber" class="rounded-2 form-control w-100 my-2">
+                    @if (SignupForm.get('phoneNumber')?.errors && SignupForm.get('phoneNumber')?.touched) {
                         <div class="alert alert-danger mt-2">
-                            @if (SignupForm.get('Phone Number')?.getError('required')) {
-                                <p class="m-0">Phone Number Is Required</p>
+                            @if (SignupForm.get('phoneNumber')?.getError('required')) {
+                                <p class="m-0">p\Phone Number Is Required</p>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="row mx-auto" formGroupName="address">
+                    <div class="col-md-4 text-start">
+                        <label for="street">Street</label>
+                        <input class="form-control" type="text" formControlName="street">
+                        @if(SignupForm.get('address.street')?.errors && SignupForm.get('address.street')?.touched)
+                        {
+                        <div class="alert alert-danger mt-2">
+                            @if (SignupForm.get('address.street')?.getError('required')) {
+                                <p class="m-0">Street Is Required</p>
+                            }
+                        </div>
+                        }
+                    </div>
+                    <div class="col-md-4 text-start">
+                        <label for="street">city</label>
+                        <input class="form-control" type="text" formControlName="city">
+                        @if(SignupForm.get('address.city')?.errors && SignupForm.get('address.city')?.touched)
+                        {
+                        <div class="alert alert-danger mt-2">
+                            @if (SignupForm.get('address.city')?.getError('required')) {
+                                <p class="m-0">var(--bs-btn-close-focus-opacity) Is Required</p>
+                            }
+                        </div>
+                        }
+                    </div>
+                    <div class="col-md-4 text-start">
+                        <label for="street">Country</label>
+                        <input class="form-control" type="text" formControlName="country">
+                        @if(SignupForm.get('address.country')?.errors && SignupForm.get('address.country')?.touched)
+                        {
+                        <div class="alert alert-danger mt-2">
+                            @if (SignupForm.get('address.country')?.getError('required')) {
+                                <p class="m-0">Country Is Required</p>
+                            }
+                        </div>
+                        }
+                    </div>
+                    
+                </div>
+                <div class="col-md-6 text-start mt-4">
+                    <label for="street">Size</label>
+                    <input class="form-control" type="text" formControlName="size">
+                    @if(SignupForm.get('size')?.errors && SignupForm.get('size')?.touched)
+                    {
+                    <div class="alert alert-danger mt-2">
+                        @if (SignupForm.get('size')?.getError('required')) {
+                            <p class="m-0">Size Is Required</p>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="col-md-6 mt-4 text-start">
+                    <label for="street">industry</label>
+                    <input class="form-control" type="text" formControlName="industry">
+                    @if(SignupForm.get('industry')?.errors && SignupForm.get('industry')?.touched)
+                    {
+                    <div class="alert alert-danger mt-2">
+                        @if (SignupForm.get('industry')?.getError('required')) {
+                            <p class="m-0">Industry Is Required</p>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="my-3 text-start">
+                    <label for="websiteUrl">Website Url</label>
+                    <input formControlName = "websiteUrl" type="text" id="websiteUrl" class="rounded-2 form-control w-100 my-2">
+                    @if (SignupForm.get('websiteUrl')?.errors && SignupForm.get('websiteUrl')?.touched) {
+                        <div class="alert alert-danger mt-2">
+                            @if (SignupForm.get('websiteUrl')?.getError('required')) {
+                                <p class="m-0">Website Url Is Required</p>
+                            }
+                                @else if (SignupForm.get('websiteUrl')?.getError('pattern')) {
+                                <p class="m-0">Invalid website format (e.g. https://example.com)</p>
                             }
                         </div>
                     }
                 </div>
                 <div class="my-3 text-start">
-                    <label for="password">Password</label>
-                    <input formControlName = "Password" type="password" id="password" class="rounded-2 form-control w-100 my-2">
-                    @if (SignupForm.get('Password')?.errors && SignupForm.get('Password')?.touched) {
+                    <label for="pictureUrl">Picture Url</label>
+                    <input formControlName = "pictureUrl" type="file" id="pictureUrl" class="rounded-2 form-control w-100 my-2">
+                    @if (SignupForm.get('pictureUrl')?.errors && SignupForm.get('pictureUrl')?.touched) {
                         <div class="alert alert-danger mt-2">
-                            @if (SignupForm.get('Password')?.getError('required')) {
+                            @if (SignupForm.get('pictureUrl')?.getError('required')) {
+                                <p class="m-0">Picture Url Is Required</p>
+                            }
+                                @else if (SignupForm.get('pictureUrl')?.getError('pattern')) {
+                                <p class="m-0">Invalid image URL format. It should end with .png, .jpg, .jpeg, .gif, .svg, or .webp
+</p>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="mb-3 text-start">
+                    <label for="password">Password</label>
+                    <input formControlName = "password" type="password" id="password" class="rounded-2 form-control w-100 my-2">
+                    @if (SignupForm.get('password')?.errors && SignupForm.get('password')?.touched) {
+                        <div class="alert alert-danger mt-2">
+                            @if (SignupForm.get('password')?.getError('required')) {
                                 <p class="m-0">Password Is Required</p>
                             }
+                                @else if (SignupForm.get('password')?.getError('pattern')) {
+                                <p class="m-0">Password At least one uppercase letter (A-Z)
+
+                                    At least one lowercase letter (a-z)<br>
+
+                                    At least one digit (0-9)<br>
+
+                                    At least one special character (e.g.,&#64;!#$%^&*)<br>
+
+                                    Minimum 8 characters (or 6 if you prefer)</p>
+                            }
                         </div>
-                    }
-                </div>
-                <div class="my-3 text-start">
-                    <label for="confirmpassword">Confirm Password</label>
-                    <input formControlName = "ConfirmPassword" type="password" id="confirmpassword" class="rounded-2 form-control w-100 my-2">
-                    @if (SignupForm.getError('mismatch')&&SignupForm.get('ConfirmPassword')?.touched) {
-                        <p class="alert alert-danger m-0">Password Confrmation Incorrect</p>
                     }
                 </div>
                 <p class="text-center">Already Have an Account ? <a routerLink="../login">Log in</a></p>
-                <button routerLink="../../employer/details" [disabled]="SignupForm.invalid" type="submit" class="btn w-75 mb-3">Sign Up</button>
+                <button routerLink="../../employer/details" [disabled]="SignupForm.invalid" type="submit" class="btn w-75 mb-3 mx-auto">Sign Up</button>
+                @if(messageError){
+                        <p class="alert alert-danger m-0 mt-2">{{messageError}}</p>
+                }
             </form>
         </section>
     </div>
 </div>
+</section>

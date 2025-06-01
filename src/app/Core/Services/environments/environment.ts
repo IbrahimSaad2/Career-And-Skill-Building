@@ -1,3 +1,3 @@
 export const enviornment = {
-    baseUrl: 'https://localhost:7001'
+    baseUrl: 'https://careerbuild.runasp.net'
 }

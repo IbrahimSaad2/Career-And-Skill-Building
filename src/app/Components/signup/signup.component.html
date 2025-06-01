@@ -65,11 +65,10 @@
                 <label for="educationLevel">Education Level</label>
                 <select id="educationLevel" class="form-control rounded-2 w-100 my-2" formControlName="educationLevel">
                     <option value="" disabled selected>Select Education Level</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                    <option value="1">associate</option>
+                    <option value="2">bachelor's</option>
+                    <option value="3">master's</option>
+                    <option value="4">doctoral</option>
                 </select>
                 <!-- Validation message -->
                 @if (SignupForm.get('educationLevel')?.errors && SignupForm.get('educationLevel')?.touched) {
@@ -100,15 +99,23 @@
                             @if (SignupForm.get('password')?.getError('required')) {
                                 <p class="m-0">Password Is Required</p>
                             }
+                            @else if (SignupForm.get('password')?.getError('pattern')) {
+                                <p class="m-0">Password At least one uppercase letter (A-Z)
+
+                                    At least one lowercase letter (a-z)<br>
+
+                                    At least one digit (0-9)<br>
+
+                                    At least one special character (e.g.,&#64;!#$%^&*)<br>
+
+                                    Minimum 8 characters (or 6 if you prefer)</p>
+
+                            }
                         </div>
                     }
                 </div>
-                <div class="my-3 text-start">
-                    <label for="confirmpassword">Confirm Password</label>
-                    <input type="password" id="confirmpassword" class="rounded-2 form-control w-100 my-2">
-                </div>
                 <p class="text-center">Already Have an Account ? <a routerLink="../login">Log in</a></p>
-                <button routerLink="../jobseeker/skillsAndTools" [disabled]="SignupForm.invalid" type="submit" class="btn w-75 mb-3">Sign Up</button>
+                <button routerLink="../skillsAndTools" [disabled]="SignupForm.invalid" type="submit" class="btn w-75 mb-3">Sign Up</button>
             </form>
         </section>
     </div>

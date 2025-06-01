@@ -30,25 +30,24 @@ export class LoginEmployerComponent {
   loginSubmit():void{
     if(this.loginForm.valid){
       console.log(this.loginForm)
-      // this._AuthService.postlogin(this.loginForm.value).subscribe({
-      //   next:(res)=>{
-      //     console.log(res)
-      //     if(res.message == "success"){
-      //       localStorage.setItem('UserToken',res.token);
-      //       this._AuthService.decodeToken();
-      //       this._Router.navigate(['../jobseeker/home']);
-      //     }
-      //   },
-      //   error:(err)=>{
-      //     console.log(err)
-      //     this.messageError = err.error.message
-      //   }
-      // })
+      this._AuthService.postloginCompany(this.loginForm.value).subscribe({
+        next:(res)=>{
+          console.log(res)
+            localStorage.setItem('token',res.token);
+            this._AuthService.decodeToken();
+            this._Router.navigate(['../../employer/home']);
+          
+        },
+        error:(err)=>{
+          console.log(err)
+          this.messageError = err.error.message
+        }
+      })
     }
   
     else{
-      // this.loginForm.setErrors({mismatch:true})
-      // this.loginForm.markAllAsTouched()
+      this.loginForm.setErrors({mismatch:true})
+      this.loginForm.markAllAsTouched()
     }
   }
 }

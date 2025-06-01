@@ -9,11 +9,13 @@
 <div class="row align-items-center text-center" >
   <!-- User Info Section -->
   <div class="col-md-6 d-flex justify-content-center align-items-center mt-3">
-    <img class="rounded-circle img-fluid" style="width: 40%;" src="./assets/Img/user.png" alt="User">
+    <img class="rounded-circle img-fluid" style="width: 40%;" [src]="[user?.pictureUrl]" alt="User">
     <div class="ms-4 text-start">
-      <h5>Name: <span class="font-monospace">{{ user.name }}</span></h5>
-      <h5>Job Title: <span class="font-monospace">{{ user.JobTitle }}</span></h5>
-      <h5>Education Level: <span class="font-monospace">{{ user.EducationLevel }}</span></h5>
+      <h5>Name: <span class="font-monospace">{{ user?.firstName}} </span> <span class="font-monospace">{{user?.lastName}}</span></h5>
+      <h5>Job Title: <span class="font-monospace">{{ user?.preferredJobTitle }}</span></h5>
+      <h5>Education Level: <span class="font-monospace">{{ user?.educationLevel }}</span></h5>
+      <h5>Email: <span class="font-monospace">{{ user?.email }}</span></h5>
+      <h5>Resume: <a style="text-decoration: none; color: #000000;" class="font-monospace" [href]="user?.resumeUrl">{{user?.firstName | uppercase}} URL<i class="ms-1 fa-solid fa-download ms-1z" style="color: #000000;"></i></a></h5>
     </div>
   </div>
 
@@ -81,7 +83,7 @@
                             <div style="background-color: rgb(244, 244, 244);"
                                 class="border rounded-2 d-flex justify-content-between align-items-center d-lg-block p-3 mb-2 mb-lg-0" >
                                 <p class="text-muted text-uppercase m-0">Track</p>
-                                <h3 class=" py-2 fw-normal m-0">Front End</h3>
+                                <h3 class=" py-2 fw-normal m-0">{{user?.preferredJobTitle}}</h3>
                             </div>
                         </div>
                         <div class="col-lg-3">
