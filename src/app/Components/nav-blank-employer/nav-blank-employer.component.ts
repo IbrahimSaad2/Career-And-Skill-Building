@@ -8,5 +8,8 @@ import { RouterLink } from '@angular/router';
   styleUrl: './nav-blank-employer.component.css'
 })
 export class NavBlankEmployerComponent {
-
+  signout():void{
+    localStorage.removeItem('token');
+    localStorage.removeItem('details')
+  }
 }

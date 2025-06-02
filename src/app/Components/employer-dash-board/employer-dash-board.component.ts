@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { ICompany } from '../../Core/interfaces/ICompany';
 
 @Component({
   selector: 'app-employer-dash-board',
@@ -9,9 +10,17 @@ import { RouterModule } from '@angular/router';
   styleUrl: './employer-dash-board.component.css'
 })
 export class EmployerDashBoardComponent {
-  jobPosts = [
-    { id: 1, title: 'Frontend Developer', postedDate: '2025-05-01' },
-    { id: 2, title: 'Backend Developer', postedDate: '2025-04-27' },
-    { id: 3, title: 'Project Manager', postedDate: '2025-04-20' }
-  ];
+
+  company: ICompany | null = null;
+  
+  ngOnInit(): void {
+    const storedUser = localStorage.getItem('details');
+    if (storedUser) {
+      this.company = JSON.parse(storedUser);
+      console.log(this.company);
+    }
+    else{
+      console.log("helle")
+    }
+  }
 }

@@ -34,7 +34,7 @@
                     </div>
                 }
                 <a href="" class="forgot">Forgot Password</a>
-                <button [disabled]="loginForm.invalid"  routerLink="../../employer/home" class="btn w-75 mb-3">Login</button>
+                <button [disabled]="loginForm.invalid"  routerLink="../../employer/home" class="btn w-75 mb-3 mx-auto rounded">Login</button>
                 @if(messageError){
                         <p class="alert alert-danger m-0 mt-2">{{messageError}}</p>
                 }
