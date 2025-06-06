@@ -42,7 +42,6 @@ export class LoginEmployerComponent {
             localStorage.setItem('token',res.token);
             localStorage.setItem('details', JSON.stringify(res));
             this._Router.navigate(['../../employer/home']);
-          
         },
         error:(err)=>{
           console.log(err)
