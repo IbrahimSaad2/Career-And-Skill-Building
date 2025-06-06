@@ -3,6 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../Core/Services/auth.service';
+import { NavbarStateService } from '../../Core/Services/navbar-state-service.service';
 
 @Component({
   selector: 'app-skills-and-tools',
@@ -16,6 +17,11 @@ export class SkillsAndToolsComponent {
 
   private fb = inject(FormBuilder);
   private readonly _AuthService = inject(AuthService);
+     private navbarService = inject(NavbarStateService);
+
+  ngOnInit() {
+    this.navbarService.setScrolled(true); // solid background
+  }
   
 
 SignupFormStep2 = this.fb.group({
@@ -86,7 +92,7 @@ submit(): void {
       },
       error: (err) => {
         console.log('Submission Error:', err)
-        this.messageError = err
+        this.messageError = err.error.errorMessage
       }
     });
   } else {

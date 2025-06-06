@@ -9,6 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../Core/Services/auth.service';
+import { NavbarStateService } from '../../Core/Services/navbar-state-service.service';
 
 @Component({
   selector: 'app-signup-employer',
@@ -19,6 +20,11 @@ import { AuthService } from '../../Core/Services/auth.service';
 export class SignupEmployerComponent {
   private readonly _AuthService = inject(AuthService);
   private readonly _FormBuilder = inject(FormBuilder);
+  private navbarService = inject(NavbarStateService);
+  
+    ngOnInit() {
+      this.navbarService.setScrolled(true); // solid background
+    }
 
 SignupForm: FormGroup = this._FormBuilder.group(
   {
@@ -63,7 +69,7 @@ messageError:string = "";
         },
         error:(err)=>{
           console.log(err);
-          this.messageError = err;
+          this.messageError = err.error.errorMessage;
         }
       })
     }

@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router,RouterLink } from '@angular/router';
 import { AuthService } from '../../Core/Services/auth.service';
+import { NavbarStateService } from '../../Core/Services/navbar-state-service.service';
 
 @Component({
   selector: 'app-login-employer',
@@ -14,6 +15,11 @@ export class LoginEmployerComponent {
     private readonly _AuthService = inject(AuthService)
     private readonly _FormBuilder = inject(FormBuilder)
     private readonly _Router = inject(Router)
+       private navbarService = inject(NavbarStateService);
+
+  ngOnInit() {
+    this.navbarService.setScrolled(true); // solid background
+  }
   
   
     messageError:string = "";
@@ -40,7 +46,7 @@ export class LoginEmployerComponent {
         },
         error:(err)=>{
           console.log(err)
-          this.messageError = err.error.message
+          this.messageError = err.error.errorMessage;
         }
       })
     }

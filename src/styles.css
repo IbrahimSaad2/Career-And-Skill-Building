@@ -26,5 +26,8 @@ a,a:hover{
     color: var(--accent);
 }
 .navbar{
-    background-color: #245773;
+    background-color: #24577300;
+}
+html {
+  scroll-behavior: smooth;
 }

@@ -2,6 +2,7 @@ import { AuthService } from './../../Core/Services/auth.service';
 import { Component, inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { NavbarStateService } from '../../Core/Services/navbar-state-service.service';
 
 @Component({
   selector: 'app-signup',
@@ -12,8 +13,14 @@ import { RouterLink } from '@angular/router';
 })
 export class SignupComponent {
   
+  
   private readonly _AuthService = inject(AuthService);
   private readonly _FormBuilder = inject(FormBuilder)
+   private navbarService = inject(NavbarStateService);
+
+  ngOnInit() {
+    this.navbarService.setScrolled(true); // solid background
+  }
 
   SignupForm:FormGroup = this._FormBuilder.group({
     firstName:[null , [Validators.required,Validators.minLength(3),Validators.maxLength(10)]],
@@ -34,31 +41,6 @@ export class SignupComponent {
   } else {
     console.log('Form is invalid, cannot save');
   }
+
 }
-
-
-  
-  
-
-
-
-
-//   {
-//   "userName": "string",
-//   "address": {
-//     "street": "string",
-//     "city": "string",
-//     "country": "string"
-//   },
-//   "pictureUrl": "string",
-//   "email": "user@example.com",
-//   "password": "string",
-//   "phoneNumber": "string",
-//   "firstName": "string",
-//   "lastName": "string",
-//   "preferredJobTitle": "string",
-//   "resumeUrl": "string",
-//   "userGoal": "string",
-//   "educationLevel": 1
-// }
 }

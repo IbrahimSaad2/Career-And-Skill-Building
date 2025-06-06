@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../Core/Services/auth.service';
+import { NavbarStateService } from '../../Core/Services/navbar-state-service.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,11 @@ export class LoginComponent {
   private readonly _AuthService = inject(AuthService)
   private readonly _FormBuilder = inject(FormBuilder)
   private readonly _Router = inject(Router)
+   private navbarService = inject(NavbarStateService);
 
+  ngOnInit() {
+    this.navbarService.setScrolled(true); // solid background
+  }
 
   messageError:string = "";
 
@@ -43,7 +48,7 @@ loginSubmit(): void {
       },
       error: (err) => {
         console.log(err);
-        this.messageError = err;
+        this.messageError = err.error.errorMessage;
       }
     });
 
