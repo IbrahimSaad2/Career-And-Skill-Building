@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormArray, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { JobsService } from '../../Core/Services/jobs.service';
 @Component({
   selector: 'app-post-job',
   imports: [CommonModule, FormsModule, RouterModule, ReactiveFormsModule],
@@ -10,22 +11,61 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
   styleUrl: './post-job.component.css'
 })
 export class PostJobComponent {
-  postJobForm: FormGroup;
+    private readonly _FormBuilder = inject(FormBuilder)
+    private readonly _JobsService = inject(JobsService)
+  
+    postJobForm: FormGroup = this._FormBuilder.group({
+    name: [null, Validators.required],
+    description: [null, Validators.required],
+    location: this._FormBuilder.group({
+      street: [null, Validators.required],  
+      city: [null, Validators.required],
+      country: [null, Validators.required]
+    }),
+    employmentType: [0, Validators.required],
+    minSalary: [null, Validators.required],
+    maxSalary: [null, Validators.required],
+    skills: this._FormBuilder.array([
+      this._FormBuilder.group({
+        name: [null, Validators.required],
+        description: [null],
+        category: [0]
+      })
+    ])
+  });
 
-  constructor(private fb: FormBuilder) {
-    this.postJobForm = this.fb.group({
-      jobTitle: ['', Validators.required],
-      jobDescription: ['', Validators.required],
-      location: ['', Validators.required],
-      salary: [''],
-      jobType: ['']  
-    });
+   get skills(): FormArray {
+    return this.postJobForm.get('skills') as FormArray;
   }
+
+  addSkill() {
+    this.skills.push(this._FormBuilder.group({
+      name: [null, Validators.required],
+      description: [null],
+      category: [0]
+    }));
+  }
+
+removeSkill() {
+  const lastIndex = this.skills.length - 1;
+  if (lastIndex >= 0) {
+    this.skills.removeAt(lastIndex);
+  }
+}
+
+
 
   submitJob() {
     if (this.postJobForm.valid) {
-      const jobData = this.postJobForm.value;
-      console.log(' Job Data:', jobData);
+      console.log(this.postJobForm);
+      this._JobsService.postJobs(this.postJobForm.value).subscribe({
+        next:(res)=>{
+          console.log(res)
+        },
+        error:(err)=>{
+          console.log(err)
+        }
+      })
     } 
   }
 }

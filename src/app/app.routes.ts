@@ -25,6 +25,11 @@ import { SignupEmployerComponent } from './Components/signup-employer/signup-emp
 import { authGuard } from './Core/guards/auth.guard';
 import { PostJobComponent } from './Components/post-job/post-job.component';
 import { LandingPageComponent } from './Components/landing-page/landing-page.component';
+import { DetailsAdminComponent } from './Components/details-admin/details-admin.component';
+import { HomeAdminComponent } from './Components/home-admin/home-admin.component';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { AdminLoginComponent } from './Components/admin-login/admin-login.component';
+import { AuthAdminLayoutComponent } from './layouts/auth-admin-layout/auth-admin-layout.component';
 
 export const routes: Routes = [
   {
@@ -83,6 +88,7 @@ export const routes: Routes = [
       },
       { path: 'tracks', component: TrackSelectionComponent, title: 'Tarcks' },
       { path: 'posts', component: PostsComponent, title: 'Posts' },
+      { path: 'exam', component: ExamComponent, title: 'Exam' },
     ],
   },
   {
@@ -97,6 +103,35 @@ export const routes: Routes = [
       { path: 'post-job', component: PostJobComponent , title:'post-Job'},
     ]
   },
+
+    {
+    path: 'authAdmin',
+    component: AuthAdminLayoutComponent,
+    children: [
+      { path: '', redirectTo: 'login', pathMatch:'full'},
+      {
+        path: 'login',
+        component: AdminLoginComponent,
+        title: 'Login-Admin',
+      },
+    ]
+  },
+  {
+    path: 'admin',
+    component:AdminLayoutComponent,
+    children: [
+      {path:'',redirectTo:'home',pathMatch:'full'},
+      { path: 'home', 
+        component: HomeAdminComponent,
+        title:'Admin Home',
+       },
+      { path: 'details/:type', 
+        component: DetailsAdminComponent,
+        title: 'details'
+       },
+    ]
+  },
+  
   { path: '**', component: NotfoundComponent }
 
 ];

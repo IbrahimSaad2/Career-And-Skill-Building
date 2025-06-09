@@ -1,201 +1,76 @@
-<div class="container py-4">
-    <h2 class="text-center fw-bold my-4">Course Details</h2>
-  
-    <div class="row my-4">
-      <div class="col-md-3 mb-3">
-        <div class="border rounded p-3 text-center">
-          <h3 class="fw-bold">265</h3>
-          <p class="mb-0">Current Learning</p>
-        </div>
-      </div>
-      <div class="col-md-6 mb-3">
-        <div class="border rounded p-3">
-          <ul class="list-unstyled mb-0">
-            <li><i class="fas fa-book-open me-2 text-primary"></i>10 Courses</li>
-            <li>
-              <i class="fas fa-project-diagram me-2 text-primary"></i>10 Projects
-            </li>
-            <li>
-              <i class="fas fa-clock me-2 text-primary"></i>6 Months - 8 Months
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div
-        class="card text-white bg-primary mb-3"
-        style="max-width: 17rem; background-color: #fff !important; color: #000"
-      >
-        <div class="card-body">
-          <h5 class="card-title text-primary fw-bold">1 Course</h5>
-          <p class="card-text">Progress</p>
-          <div class="progress">
-            <div
-              class="progress-bar bg-white text-dark"
-              role="progressbar"
-              style="width: 0%"
-            >
-              0%
-            </div>
-          </div>
-        </div>
+<div class="container py-5" style="margin-top: 100px;">
+  <h2 class="mb-4 text-center fw-bold"> Explore Top Courses</h2>
+
+  @if (isLoading) {
+    <div class="d-flex justify-content-center py-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
       </div>
     </div>
-  
-    <ul class="nav nav-tabs mb-4" id="courseTabs" role="tablist">
-      <li class="nav-item" role="presentation">
-        <button
-          class="nav-link active"
-          id="overview-tab"
-          data-bs-toggle="tab"
-          data-bs-target="#overview"
-          type="button"
-          role="tab"
-        >
-          Overview
-        </button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button
-          class="nav-link"
-          id="list-tab"
-          data-bs-toggle="tab"
-          data-bs-target="#list"
-          type="button"
-          role="tab"
-        >
-          List View
-        </button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button
-          class="nav-link"
-          id="tile-tab"
-          data-bs-toggle="tab"
-          data-bs-target="#tile"
-          type="button"
-          role="tab"
-        >
-          Tile View
-        </button>
-      </li>
-    </ul>
-  
-    <div class="tab-content mb-5" id="courseTabsContent">
-      <div class="tab-pane fade show active" id="overview" role="tabpanel">
-        <h4 class="mt-5 mb-3">Featured Courses</h4>
-  
-        <div class="position-relative overflow-hidden px-4">
-          <div
-            class="d-flex overflow-hidden"
-            style="scroll-behavior: smooth"
-            #carouselContainer
-            (scroll)="onScroll()"
-          >
-            <div class="d-flex" style="min-width: max-content">
-              <div
-                class="card mx-2 shadow-sm"
-                *ngFor="let course of featuredCourses; let i = index"
-                style="width: 250px"
-              >
-                <div class="card-body text-center">
-                  <div class="mb-2">
-                    <i class="fas fa-laptop-code fa-2x text-primary"></i>
-                  </div>
-  
-                  <h5 class="fw-bold">{{ course.title }}</h5>
-  
-                  <div class="text-warning mb-1">
-                    <ng-container *ngFor="let _ of getFullStars(course.rating)">
-                      <i class="fas fa-star"></i>
-                    </ng-container>
-                    <ng-container *ngIf="hasHalfStar(course.rating)">
-                      <i class="fas fa-star-half-alt"></i>
-                    </ng-container>
-                    <ng-container *ngFor="let _ of getEmptyStars(course.rating)">
-                      <i class="far fa-star"></i>
-                    </ng-container>
-                    <span class="text-muted small ms-1"
-                      >({{ course.rating }})</span
-                    >
-                  </div>
-  
-                  <p class="text-muted small mb-2">
-                    <i class="fas fa-users me-1"></i>
-                    {{ course.students | number }} enrolled
-                  </p>
-  
-                  <div class="text-muted small mb-2">
-                    <p class="mb-1">
-                      <i class="fas fa-clock me-1"></i> {{ course.duration }}
-                    </p>
-                    <p class="mb-1">
-                      <i class="fas fa-signal me-1"></i> {{ course.level }}
-                    </p>
-                    <p class="mb-1" *ngIf="course.certificate">
-                      <i class="fas fa-certificate text-success me-1"></i>
-                      Certificate Included
-                    </p>
-                  </div>
-  
-                  <a href="#" class="text-primary">
-                    Learn more <i class="fas fa-arrow-right"></i>
-                  </a>
-                </div>
+  }
+
+  @if (errorOccurred) {
+    <div class="alert alert-danger text-center" role="alert">
+      <i class="fa-solid fa-triangle-exclamation me-2"></i>
+      Failed to load courses. Please <button class="btn btn-link p-0" (click)="reload()">reload</button> the page.
+    </div>
+  }
+
+  @if (!isLoading && !errorOccurred) {
+    <div class="row g-4">
+      @for (course of courses; track course.Name) {
+        <div class="col-md-4">
+          <div class="card h-100 p-4 shadow-lg border-0 rounded-4 text-center course-card">
+            <div class="card-body">
+              <div class="icon-circle mx-auto mb-3">
+                <i class="fa-solid fa-code fa-2x text-primary"></i>
               </div>
-            </div>
-          </div>
-  
-          <button
-            (click)="scrollLeft()"
-            class="btn btn-dark position-absolute top-50 start-0 translate-middle-y"
-          >
-            <i class="fas fa-chevron-left"></i>
-          </button>
-  
-          <button
-            (click)="scrollRight()"
-            class="btn btn-dark position-absolute top-50 end-0 translate-middle-y"
-          >
-            <i class="fas fa-chevron-right"></i>
-          </button>
-        </div>
-      </div>
-  
-      <div class="tab-pane fade" id="list" role="tabpanel">
-        <h5>Recommended (List View)</h5>
-        <ul class="list-group">
-          <li class="list-group-item" *ngFor="let rec of recommendedCourses">
-            <i class="fas fa-play me-2 text-primary"></i>
-            <strong>{{ rec.title }}</strong
-            ><br />
-            <small class="text-muted"
-              >Lorem ipsum dolor amet, consectetur adipiscing elit...</small
-            >
-          </li>
-        </ul>
-      </div>
-  
-      <!-- tile View -->
-      <div class="tab-pane fade" id="tile" role="tabpanel">
-        <h5>Recommended (Tile View)</h5>
-        <div class="row row-cols-1 row-cols-md-2 g-3">
-          <div class="col" *ngFor="let rec of recommendedCourses">
-            <div
-              class="d-flex align-items-start animate__animated animate__fadeInLeft"
-            >
-              <i class="fas fa-play me-2 text-primary"></i>
-              <div>
-                <a href="#" class="fw-bold d-block text-decoration-none">{{
-                  rec.title
-                }}</a>
-                <small class="text-muted"
-                  >Lorem ipsum dolor amet, consectetur adipiscing elit...</small
-                >
-              </div>
+              <h5 class="card-title fw-semibold mb-2">{{ course.Name }}</h5>
+              <span class="badge bg-info text-dark mb-2 me-2">
+                <i class="fa-solid fa-clock me-1 py-2 "></i> {{ course?.Duration || 'Unknown' }}
+              </span>
+              <button class="btn btn-outline-primary mt-2" (click)="openDialog(course)">
+                <i class="fa-solid fa-eye me-1"></i> View Course
+              </button>
             </div>
           </div>
         </div>
+      }
+    </div>
+  }
+
+  @if (selectedCourse) {
+    <div class="dialog-backdrop" (click)="closeDialog()"></div>
+    <div class="dialog-box animate">
+      <h4 class="fw-bold ">
+        <i class="fa-solid fa-laptop-code me-2 text-primary"></i>{{ selectedCourse.Name }}
+      </h4>
+      <p class="text-muted">
+        <i class="fa-solid fa-clock me-1"></i> {{ selectedCourse.Duration || 'Not Specified' }}
+      </p>
+    <p><strong>Skills:</strong></p>
+
+    @if (selectedCourse.Skills && selectedCourse.Skills.length > 0) {
+      <ul class="list-unstyled ps-3">
+        @for (skill of selectedCourse.Skills; track skill) {
+          <li>{{ skill }}</li>
+        }
+      </ul>
+    }
+    @else {
+      <div class="text-muted fst-italic ps-3">
+        <i class="fa-solid fa-circle-info me-1"></i> Click Apply to know more.
+      </div>
+    }
+
+      <div class="d-flex justify-content-end gap-2 mt-4">
+        <button class="btn btn-secondary" (click)="closeDialog()">
+          <i class="fa-solid fa-xmark me-1"></i> Close
+        </button>
+        <a [href]="selectedCourse.URL" target="_blank" class="btn btn-success">
+          <i class="fa-solid fa-paper-plane me-1"></i> Apply
+        </a>
       </div>
     </div>
-  </div>
-  
+  }
+</div>

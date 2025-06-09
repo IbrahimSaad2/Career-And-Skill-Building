@@ -14,5 +14,8 @@ export class JobsService {
     getSpecificJob(id:string|null):Observable<any>{
       return this._HttpClient.get(`${enviornment.baseUrl}/api/Job/${id}`)
     }
+    postJobs(data:object):Observable<any>{
+      return this._HttpClient.post(`${enviornment.baseUrl}/api/Job`,data);
+    }
   
 }

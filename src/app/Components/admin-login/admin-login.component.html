@@ -1,0 +1,45 @@
+<div class="container content">
+    <div class="row signup justify-content-center align-items-center">
+        <div class="col-lg-7 image">
+            <img class="w-75" src="./assets/Img/Admin login.png" alt="">
+        </div>
+        <div class="col-lg-4 border rounded-3 text-center py-4 inputs">
+            <h1 class="mb-5">Login</h1>
+            <h5 class="text-start">Login Information</h5>
+            <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()" class="input-group d-flex flex-column my-2">
+                <input type="email" formControlName="email" placeholder="Email" class="rounded-2 form-control w-100 my-3">
+                @if (loginForm.get('email')?.errors && loginForm.get('email')?.touched) {
+                    <div class="alert alert-danger mt-2">
+                        @if (loginForm.get('email')?.getError('required')) {
+                            <p class="m-0">Email Is Required</p>
+                        }
+                        @else if (loginForm.get('email')?.getError('email')) {
+                            <p class="m-0">Email not Valid</p>
+                            <p class="m-0">example&#64;xxxx.com</p>
+                        }
+                    </div>
+                }
+
+                <input type="password" formControlName="password" placeholder="Password" class="rounded-2 form-control w-100 my-3">
+                @if (loginForm.get('password')?.errors && loginForm.get('password')?.touched) 
+                {
+                    <div class="alert alert-danger mt-2">
+                        @if (loginForm.get('password')?.getError('required')) {
+                            <p class="m-0">Password Is Required</p>
+                        }
+                        @else if(loginForm.get('password')?.getError('pattern')) {
+                            <p class="m-0">Password Should be more than or equal 6 chars</p>
+                        }
+                    </div>
+                }
+                <a href="" class="forgot">Forgot Password</a>
+                <button routerLink="/admin/home" class="btn w-75 mb-3 rounded mx-auto mt-2">Login</button>
+                @if(messageError){
+                    <p class="alert alert-danger m-0 mt-2">{{messageError}}</p>
+                }
+            </form>
+            <p>Don't Have a n Account ? <a routerLink="../signup">Sign Up</a></p>
+            <p>Login As <a routerLink="../authEmployer/login">Employer</a></p>
+        </div>
+    </div>
+</div>

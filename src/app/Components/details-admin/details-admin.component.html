@@ -1,0 +1,104 @@
+<div class="container mt-4">
+  <h2 class="mb-4 text-capitalize">{{ type }} Management</h2>
+
+  <div class="alert alert-primary">Total: {{ data.length }}</div>
+
+  
+  <div *ngIf="type === 'jobs'">
+    <table class="table table-bordered">
+      <thead><tr><th>Title</th><th>Location</th><th>Posted At</th><th>Status</th><th>Actions</th></tr></thead>
+      <tbody>
+        <tr *ngFor="let job of data">
+          <td>{{ job.title }}</td>
+          <td>{{ job.location }}</td>
+          <td>{{ job.postedAt }}</td>
+          <td>{{ job.status }}</td>
+          <td>
+            <button class="btn btn-sm btn-warning me-2" (click)="editItem(job)">Edit</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteItem(job.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div *ngIf="type === 'jobseekers'">
+    <table class="table table-bordered">
+      <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Skills</th><th>Actions</th></tr></thead>
+      <tbody>
+        <tr *ngFor="let seeker of data">
+          <td>{{ seeker.name }}</td>
+          <td>{{ seeker.email }}</td>
+          <td>{{ seeker.phone }}</td>
+          <td>{{ seeker.skills }}</td>
+          <td>
+            <button class="btn btn-sm btn-warning me-2" (click)="editItem(seeker)">Edit</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteItem(seeker.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div *ngIf="type === 'employers'">
+    <table class="table table-bordered">
+      <thead><tr><th>Company</th><th>Owner</th><th>Industry</th><th>Email</th><th>Actions</th></tr></thead>
+      <tbody>
+        <tr *ngFor="let emp of data">
+          <td>{{ emp.company }}</td>
+          <td>{{ emp.owner }}</td>
+          <td>{{ emp.industry }}</td>
+          <td>{{ emp.email }}</td>
+          <td>
+            <button class="btn btn-sm btn-warning me-2" (click)="editItem(emp)">Edit</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteItem(emp.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div *ngIf="type === 'applications'">
+    <table class="table table-bordered">
+      <thead><tr><th>Job</th><th>Applicant</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead>
+      <tbody>
+        <tr *ngFor="let app of data">
+          <td>{{ app.job }}</td>
+          <td>{{ app.applicant }}</td>
+          <td>{{ app.date }}</td>
+          <td>{{ app.status }}</td>
+          <td>
+            <button class="btn btn-sm btn-warning me-2" (click)="editItem(app)">Edit</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteItem(app.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal fade show d-block" *ngIf="showModal" tabindex="-1" style="background-color: rgba(0,0,0,0.5);">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit {{ type }} Info</h5>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="selectedItem">
+          <div *ngFor="let key of (selectedItem )">
+            <label class="form-label text-capitalize">{{ key.key }}</label>
+            <input [(ngModel)]="selectedItem[key.key]" class="form-control mb-2" />
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" (click)="saveChanges()">Save</button>
+        <button class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

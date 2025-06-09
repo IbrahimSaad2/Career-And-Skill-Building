@@ -1,1 +1,48 @@
-<p>exam works!</p>
+<div class="exam-container">
+  <h2 class="text-center mb-4">Online Exam</h2>
+
+  <div *ngIf="!examStarted && !examFinished">
+    <button class="start-btn" [disabled]="attempts >= maxAttempts" (click)="startExam()">
+      Start Exam
+    </button>
+    <div *ngIf="attempts >= maxAttempts" class="alert alert-danger mt-3">
+      You have exhausted your 2 attempts. You cannot take the exam again.
+    </div>
+  </div>
+
+  <div *ngIf="examStarted">
+    <div class="timer-progress">
+      <div class="timer">⏰ {{ formatTime(remainingTime) }}</div>
+      <div class="progress">
+        <div class="progress-bar" [style.width.%]="progress"></div>
+      </div>
+    </div>
+
+    <div class="question-box">
+      <h4>{{ questions[currentQuestionIndex].question }}</h4>
+      <div class="options">
+        <button
+          class="option-btn"
+          *ngFor="let option of questions[currentQuestionIndex].options"
+          (click)="selectAnswer(option)">
+          {{ option }}
+        </button>
+      </div>
+    </div>
+
+    <button class="next-btn" (click)="nextQuestion()">Next</button>
+  </div>
+
+  <div *ngIf="examFinished" class="text-center">
+    <h3>Exam Completed</h3>
+    <p><strong>Result:</strong> {{ examResult }}</p>
+
+    <button class="start-btn mt-3" [disabled]="attempts >= maxAttempts" (click)="startExam()">
+      Retake Exam
+    </button>
+
+    <div *ngIf="attempts >= maxAttempts" class="alert alert-danger mt-3">
+      You have exhausted your 2 attempts. You cannot retake the exam.
+    </div>
+  </div>
+</div>

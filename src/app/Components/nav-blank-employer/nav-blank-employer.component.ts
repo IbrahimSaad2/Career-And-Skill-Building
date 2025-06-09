@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { NavbarStateService } from '../../Core/Services/navbar-state-service.service';
 
 @Component({
   selector: 'app-nav-blank-employer',
@@ -12,4 +13,13 @@ export class NavBlankEmployerComponent {
     localStorage.removeItem('token');
     localStorage.removeItem('details')
   }
+
+  private navbarService = inject(NavbarStateService);
+    isScrolled = signal(true);
+  
+    constructor() {
+      effect(() => {
+        this.isScrolled.set(this.navbarService.isScrolled());
+      });
+    }
 }

@@ -1,4 +1,4 @@
-<section class="header mt-5">
+<section class="header" style="margin-top: 90PX;">
     <div class="title text-center">
         <h2>Skills And Tools</h2>
     </div>
@@ -69,7 +69,7 @@
                 <div class="my-3 text-start">
                     <label for="resumeUrl">resume Url</label>
                     <input formControlName = "resumeUrl" type="file" id="resumeUrl" class="rounded-2 form-control w-100 my-2">
-                    @if (SignupFormStep2.get('resumeUrl')?.errors) {
+                    @if (SignupFormStep2.get('resumeUrl')?.errors&&SignupFormStep2.get('resumeUrl')?.touched  ) {
                         <div class="alert alert-danger mt-2">
                             @if (SignupFormStep2.get('resumeUrl')?.getError('required')) {
                                 <p class="m-0">resume Url Is Required</p>
@@ -85,7 +85,7 @@
                 <div class="my-3 text-start">
                     <label for="pictureUrl">Picture Url</label>
                     <input formControlName = "pictureUrl" type="file" id="pictureUrl" class="rounded-2 form-control w-100 my-2">
-                    @if (SignupFormStep2.get('pictureUrl')?.errors) {
+                    @if (SignupFormStep2.get('pictureUrl')?.errors&&SignupFormStep2.get('pictureUrl')?.touched) {
                         <div class="alert alert-danger mt-2">
                             @if (SignupFormStep2.get('pictureUrl')?.getError('required')) {
                                 <p class="m-0">Picture Url Is Required</p>

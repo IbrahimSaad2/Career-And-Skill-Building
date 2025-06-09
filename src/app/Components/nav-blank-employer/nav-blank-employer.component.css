@@ -4,6 +4,14 @@ nav .logo{
     font-family: "Montserrat", sans-serif;
     font-size: 25px;
 }
-nav{
-    background-color: #245773;
+.navbar {
+  transition: background-color 0.3s ease;
+  background-color: transparent;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
 }
+.navbar-scrolled {
+  background-color: #245773d9 !important; /* Change as needed */
+}
+

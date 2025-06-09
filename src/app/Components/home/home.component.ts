@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { IPosts } from '../../Core/interfaces/IPosts';
 import { JobsService } from '../../Core/Services/jobs.service';
 import { Subscription } from 'rxjs';
 import { SlicePipe } from '@angular/common';
+import { NavbarStateService } from '../../Core/Services/navbar-state-service.service';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,14 @@ import { SlicePipe } from '@angular/common';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+  private navbarService = inject(NavbarStateService);
+  @HostListener('window:scroll', [])
+  onScroll() {
+    const headerHeight = document.querySelector('.header')?.clientHeight || 0;
+    const isBeyondHeader = window.scrollY > headerHeight;
+    this.navbarService.setScrolled(isBeyondHeader);
+  }
+
   customOptions: OwlOptions  = {
     loop: true,
     mouseDrag: true,
@@ -42,6 +51,8 @@ export class HomeComponent {
           console.log(err);
         },
       });
+        this.navbarService.setScrolled(false); // transparent on load
+
     }
     getTimeAgo(date: Date): string {
       const createdDate = new Date(date);

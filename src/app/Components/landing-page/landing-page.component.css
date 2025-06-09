@@ -1,9 +1,11 @@
 .header {
-    background-image: url(../../../assets/Img/home.jpg);
-    background-size: cover;
-    background-position: center center;
-    background-attachment: fixed;
-    height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.833), rgba(0, 0, 0, 0.833)), 
+                    url('../../../assets/Img/lnading.jpg');   
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 .header h1{
@@ -46,7 +48,8 @@
 }
 
 .carousel{
-    background-image: url(../../../assets/Img/home.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.833), rgba(0, 0, 0, 0.833)), 
+                    url('../../../assets/Img/lnading.jpg');  
     background-position: center center;
     background-size: cover;
     background-attachment: fixed;
