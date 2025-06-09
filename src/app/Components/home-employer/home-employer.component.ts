@@ -1,4 +1,4 @@
-import { Component, HostListener, inject } from '@angular/core';
+import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ICompany } from '../../Core/interfaces/ICompany';
 import { log } from 'console';
@@ -10,7 +10,7 @@ import { NavbarStateService } from '../../Core/Services/navbar-state-service.ser
   templateUrl: './home-employer.component.html',
   styleUrl: './home-employer.component.css'
 })
-export class HomeEmployerComponent {
+export class HomeEmployerComponent implements OnInit{
   company: ICompany | null = null;
   
     private navbarService = inject(NavbarStateService);
@@ -33,7 +33,7 @@ export class HomeEmployerComponent {
     else{
       console.log("helle")
     }
-    this.navbarService.setScrolled(false); // transparent on load
+    this.navbarService.setScrolled(false);
 
   }
 

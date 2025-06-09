@@ -4,6 +4,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { JobsService } from '../../Core/Services/jobs.service';
 import { IPosts } from '../../Core/interfaces/IPosts';
 import { CurrencyPipe } from '@angular/common';
+import { NavbarStateService } from '../../Core/Services/navbar-state-service.service';
 
 @Component({
   selector: 'app-job-application',
@@ -14,6 +15,8 @@ import { CurrencyPipe } from '@angular/common';
 export class JobApplicationComponent implements OnInit {
   private readonly _ActivatedRoute = inject(ActivatedRoute);
   private readonly _JobsService = inject(JobsService);
+  private readonly navbarService = inject(NavbarStateService);
+
 
   posts: IPosts | null = null;
 
@@ -25,6 +28,7 @@ export class JobApplicationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.navbarService.setScrolled(true);
     this._ActivatedRoute.paramMap.subscribe({
       next: (p) => {
         console.log(p.get('id'));

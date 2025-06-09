@@ -1,4 +1,4 @@
-import { Component, HostListener, inject } from '@angular/core';
+import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { IPosts } from '../../Core/interfaces/IPosts';
@@ -13,7 +13,8 @@ import { NavbarStateService } from '../../Core/Services/navbar-state-service.ser
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+  
   private navbarService = inject(NavbarStateService);
   @HostListener('window:scroll', [])
   onScroll() {
@@ -51,8 +52,7 @@ export class HomeComponent {
           console.log(err);
         },
       });
-        this.navbarService.setScrolled(false); // transparent on load
-
+        this.navbarService.setScrolled(false);
     }
     getTimeAgo(date: Date): string {
       const createdDate = new Date(date);

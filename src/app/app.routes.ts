@@ -30,6 +30,8 @@ import { HomeAdminComponent } from './Components/home-admin/home-admin.component
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AdminLoginComponent } from './Components/admin-login/admin-login.component';
 import { AuthAdminLayoutComponent } from './layouts/auth-admin-layout/auth-admin-layout.component';
+import { AllPotsComponent } from './Components/all-pots/all-pots.component';
+import { EditPostComponent } from './Components/edit-post/edit-post.component';
 
 export const routes: Routes = [
   {
@@ -100,7 +102,9 @@ export const routes: Routes = [
       {path:'home',component:HomeEmployerComponent,title:'Home-Employeer'},
       {path:'dashboard',component:EmployerDashBoardComponent,title:'Dashboard-Employeer'},
       {path:'details',component:DetailsEmployerComponent,title:'Details-Employeer'},
-      { path: 'post-job', component: PostJobComponent , title:'post-Job'},
+      { path: 'post-job', component: PostJobComponent , title:'Post-Job'},
+      { path: 'posts', component: AllPotsComponent , title:'Posts'},
+      { path: 'editpost/:id', component: EditPostComponent , title:'Edit'},
     ]
   },
 

@@ -1,36 +1,50 @@
-import { JobsService } from './../../Core/Services/jobs.service';
 import { Component, inject, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { subscriptionLogsToBeFn } from 'rxjs/internal/testing/TestScheduler';
-import { IPosts } from '../../Core/interfaces/IPosts';
+import { JobsService } from '../../Core/Services/jobs.service';
 import { NavbarStateService } from '../../Core/Services/navbar-state-service.service';
+import { Job } from '../../Core/interfaces/job';
+import { RouterLink } from '@angular/router';
+
 @Component({
-  selector: 'app-posts',
+  selector: 'app-all-pots',
   imports: [RouterLink],
-  templateUrl: './posts.component.html',
-  styleUrl: './posts.component.css',
+  templateUrl: './all-pots.component.html',
+  styleUrl: './all-pots.component.css'
 })
-export class PostsComponent implements OnInit {
-  private readonly _jobs = inject(JobsService);
+export class AllPotsComponent implements OnInit {
+  private readonly _JobsService = inject(JobsService);
   private readonly navbarService = inject(NavbarStateService);
-  allPosts!: Subscription;
-  posts: IPosts[] = [];
+  jobs:Job[] = []
 
   ngOnInit(): void {
     this.navbarService.setScrolled(true);
 
-    this.allPosts = this._jobs.getJobs().subscribe({
-      next: (res) => {
+    this._JobsService.getAllJobs().subscribe({
+      next:(res)=>{
         console.log(res);
-        this.posts = res;
-        console.log(this.posts);
+        this.jobs = res
       },
-      error: (err) => {
+      error:(err)=>{
         console.log(err);
-      },
-    });
+      }
+    })
   }
+
+  deleteJob(id:number):void{
+    this._JobsService.DeleteJobs(id).subscribe({
+      next:(res)=>{
+        console.log(res);
+      },
+      error:(err)=>{
+        console.log(err)
+      }
+    })
+  }
+
+
+
+
+
+  
 getTimeAgo(date: Date): string {
   const createdDate = new Date(date);
   const now = new Date();
@@ -54,5 +68,7 @@ getTimeAgo(date: Date): string {
 
   return 'Just now';
 }
+
+
 
 }

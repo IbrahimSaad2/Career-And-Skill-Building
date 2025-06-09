@@ -15,14 +15,13 @@ export class NavJobSeekerComponent {
   localStorage.removeItem('token');
   localStorage.removeItem('details');
 }
-private navbarService = inject(NavbarStateService);
-  isScrolled = signal(true);
-
-  constructor() {
-    effect(() => {
-      this.isScrolled.set(this.navbarService.isScrolled());
-    });
-  }
+  private navbarService = inject(NavbarStateService);
+    isScrolled = signal(true);
+    constructor() {
+      effect(() => {
+        this.isScrolled.set(this.navbarService.isScrolled());
+      });
+    }
 
 }
 

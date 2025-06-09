@@ -17,5 +17,14 @@ export class JobsService {
     postJobs(data:object):Observable<any>{
       return this._HttpClient.post(`${enviornment.baseUrl}/api/Job`,data);
     }
+    getAllJobs():Observable<any>{
+      return this._HttpClient.get(`${enviornment.baseUrl}/api/Job/CompanyPosts`);
+    }
+    DeleteJobs(id:number):Observable<any>{
+      return this._HttpClient.delete(`${enviornment.baseUrl}/api/Job/${id}`)
+    }
+    editPost(id:string , data:object):Observable<any>{
+      return this._HttpClient.patch(`${enviornment.baseUrl}/api/Job/Update/${id}`,data);
+    }
   
 }

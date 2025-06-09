@@ -1,5 +1,5 @@
 import { IUser } from './../../Core/interfaces/iuser';
-import { Component,OnInit,ViewChild } from '@angular/core';
+import { Component,inject,OnInit,ViewChild } from '@angular/core';
 import { routes } from '../../app.routes';
 import { RouterLink } from '@angular/router';
 import {   ApexChart,
@@ -11,6 +11,7 @@ import {   ApexChart,
   NgApexchartsModule} from "ng-apexcharts";
 import { log } from 'console';
 import { UpperCasePipe } from '@angular/common';
+import { NavbarStateService } from '../../Core/Services/navbar-state-service.service';
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -30,10 +31,13 @@ export type ChartOptions = {
   styleUrl: './job-seeker-dashboard.component.css'
 })
 export class JobSeekerDashboardComponent implements OnInit{
+  private readonly navbarService = inject(NavbarStateService)
+  
 
 user: IUser | null = null;
 
 ngOnInit(): void {
+    this.navbarService.setScrolled(true);  
   const storedUser = localStorage.getItem('details');
   if (storedUser) {
     this.user = JSON.parse(storedUser);

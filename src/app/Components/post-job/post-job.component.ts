@@ -4,6 +4,7 @@ import { FormArray, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { JobsService } from '../../Core/Services/jobs.service';
+import { NavbarStateService } from '../../Core/Services/navbar-state-service.service';
 @Component({
   selector: 'app-post-job',
   imports: [CommonModule, FormsModule, RouterModule, ReactiveFormsModule],
@@ -13,6 +14,7 @@ import { JobsService } from '../../Core/Services/jobs.service';
 export class PostJobComponent {
     private readonly _FormBuilder = inject(FormBuilder)
     private readonly _JobsService = inject(JobsService)
+    private readonly navbarService = inject(NavbarStateService)
   
     postJobForm: FormGroup = this._FormBuilder.group({
     name: [null, Validators.required],
@@ -52,7 +54,9 @@ removeSkill() {
     this.skills.removeAt(lastIndex);
   }
 }
-
+    ngOnInit(): void {
+        this.navbarService.setScrolled(true);
+    }
 
 
   submitJob() {

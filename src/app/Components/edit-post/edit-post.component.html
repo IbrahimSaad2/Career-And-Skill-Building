@@ -1,6 +1,6 @@
 <div class="container" style="margin-top: 100px;">
-  <h3 class="mb-4">Post a New Job</h3>
-  <form [formGroup]="postJobForm" (ngSubmit)="submitJob()">
+  <h3 class="mb-4">Edit Job</h3>
+  <div [formGroup]="postJobForm" (ngSubmit)="submit()">
     <!-- Job Title -->
     <div class="mb-3">
         <label class="form-label">Job Title</label>
@@ -71,22 +71,16 @@
     </div>
 
     <!-- Employment Type -->
-    <div class="mb-3">
-      <label class="form-label">Employment Type</label>
-      <select class="form-select" formControlName="employmentType">
-    <option [ngValue]="1">None</option>
-    <option [ngValue]="1">Full-Time</option>
-    <option [ngValue]="2">Part-Time</option>
-    <option [ngValue]="3">Contract</option>
-      </select>
-      @if (postJobForm.get('employmentType')?.errors && postJobForm.get('employmentType')?.touched) {
-        <div class="alert alert-danger mt-2">
-          @if (postJobForm.get('employmentType')?.getError('required')) {
-            <p>Employment type is required</p>
-          }
+        <div class="mb-3">
+        <label class="form-label">Employment Type</label>
+        <select class="form-select" formControlName="employmentType">
+            <option [ngValue]="0">None</option>
+            <option [ngValue]="1">Full Time</option>
+            <option [ngValue]="2">Part Time</option>
+            <option [ngValue]="3">Contract</option>
+        </select>
         </div>
-      }
-    </div>
+
 
 
     <!-- Minimum Salary -->
@@ -126,7 +120,7 @@
     </div>
 
     <!-- Skills (dynamic form array) -->
-    <div formArrayName="skills" class="mb-3">
+     <div formArrayName="skills" class="mb-3"> 
       <label class="form-label">Skills</label>
       <div
         *ngFor="let skill of skills.controls; let i = index"
@@ -176,10 +170,10 @@
         Remove Skill
       </button>
 
-    </div>
+    </div> 
 
     <button type="submit" class="btn btn-primary ms-auto d-block" [disabled]="!postJobForm.valid">
       Submit Job
     </button>
-  </form>
+  </div>
 </div>

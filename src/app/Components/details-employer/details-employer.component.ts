@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { NavbarStateService } from '../../Core/Services/navbar-state-service.service';
 
 @Component({
   selector: 'app-details-employer',
@@ -10,6 +11,11 @@ import { RouterModule } from '@angular/router';
   styleUrl: './details-employer.component.css'
 })
 export class DetailsEmployerComponent {
+    private readonly navbarService = inject(NavbarStateService)
+    ngOnInit(): void {
+              this.navbarService.setScrolled(true);  
+    }
+  
   editProfileForm: FormGroup;
   currentProfile = {
     companyName: 'ITSYS',
