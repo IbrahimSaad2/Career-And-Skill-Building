@@ -7,6 +7,15 @@ import {
 import express from 'express';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { AngularAppEngine, createRequestHandler } from '@angular/ssr'
+  import { getContext } from '@netlify/angular-runtime/context.mjs'
+​
+  const angularAppEngine = new AngularAppEngine()
+​
+  export async function netlifyAppEngineHandler(request: Request): Promise<any> {
+    const context = getContext()
+  }
+
 
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
