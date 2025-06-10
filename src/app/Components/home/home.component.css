@@ -82,3 +82,9 @@
     border: #ddd solid 1px;
     padding: 1rem;
 }
+.track{
+  transition: all 0.3s;
+}
+.track:hover{
+    transform: scale(1.03);
+}

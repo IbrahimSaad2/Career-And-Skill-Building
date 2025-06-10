@@ -1,48 +1,39 @@
 import { Component, inject, OnInit  } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { CourseServiceService, Course  } from '../../Core/Services/course-service.service';
+import { ActivatedRoute } from '@angular/router';
+import { CourseServiceService,  } from '../../Core/Services/course-service.service';
+import { NavbarStateService } from '../../Core/Services/navbar-state-service.service';
+import { LearningTrack } from '../../Core/interfaces/course';
+import { json } from 'stream/consumers';
 @Component({
   selector: 'app-course-details',
   imports: [],
   templateUrl: './course-details.component.html',
   styleUrl: './course-details.component.css'
 })
-export class CourseDetailsComponent   {
-  selectedCourse: any = null;
+export class CourseDetailsComponent implements OnInit   {
+    private readonly _ActivatedRoute = inject(ActivatedRoute);
+    private readonly navbarService = inject(NavbarStateService);
+    private _courseService = inject(CourseServiceService);
 
-toggleDetails(course: any) {
-  this.selectedCourse = this.selectedCourse === course ? null : course;
-}
- courses: Course[] = [];
-  isLoading: boolean = true;           
-  errorOccurred: boolean = false;     
+ track!:LearningTrack; 
 
-  private courseService = inject(CourseServiceService);
-
-  // ngOnInit(): void {
-  //   this.courseService.getCourses().subscribe({
-  //     next: (data: { Courses: Course[] }) => {
-  //       this.courses = data.Courses;
-  //       console.log('Courses:', this.courses);
-  //       this.isLoading = false;
-  //     },
-  //     error: (err) => {
-  //       console.error('Error loading courses:', err);
-  //       this.isLoading = false;
-  //       this.errorOccurred = true;
-  //     }
-  //   });
-  // }
-
-  openDialog(course: Course) {
-    this.selectedCourse = course;
-  }
-
-  closeDialog() {
-    this.selectedCourse = null;
-  }
-
-  reload() {
-    window.location.reload(); 
+  ngOnInit(): void {
+    this.navbarService.setScrolled(true);
+    this._ActivatedRoute.paramMap.subscribe({
+      next:(P)=>{
+        console.log(P.get('track'))
+        let query = P.get('track');
+        this._courseService.getCourses(query!).subscribe({
+          next:(res)=>{
+            console.log(res);
+            this.track = res
+            console.log(this.track)
+          },
+          error:(err)=> {
+            console.log(err)
+          },
+        })
+      }
+    })
   }
 }

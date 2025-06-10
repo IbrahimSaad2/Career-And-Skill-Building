@@ -31,42 +31,22 @@
         </div>
       </div>
       <div class="row g-4 d-flex justify-content-center">
-          <div class="col-md-4 mt-5">
+          @for (track of tracks.slice(-3); track $index) {
+            <div class="col-md-4 mt-5 track">
               <div class="card mx-auto my-4" style="width: 18rem;">
-                  <img src="../../../assets/Img/backend.PNG" class="card-img-top" alt="...">
+                  <img [src]="track.coverUrl" class="card-img-top" [alt]="track.name">
+                  <p class="text-center"><i class="fa-solid fa-clock me-1" style="color: #000000;"></i>{{track.durationInHours}}H</p>
+                  <p class="text-center"><i class="fa-solid fa-layer-group me-1" style="color: #000000;"></i> {{track.difficultyLevel}}</p>
                   <div class="card-body">
-                    <h5 class="card-title">Back-End</h5>
-                    <p class="card-text">This programme teaches languages like JavaScript and Python and data management tools like SQL. This hands-on, project-based learning style prepares you to work as a backend developer after graduation. Suitable for beginners.
-                      Apply Now</p>
-                    <a routerLink="../courseDetails" class="btn btn-primary">Go somewhere</a>
+                    <h5 class="card-title">{{track.name}}</h5>
+                    <p class="card-text">{{track.description}}</p>
+                    <a routerLink="../courseDetails" class="btn btn-primary">Apply Now</a>
                   </div>
                 </div>
           </div>
-          <div class="col-md-4 my-5">
-              <div class="card mx-auto mb-4" style="width: 18rem;">
-                  <img src="../../../assets/Img/backend.PNG" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Back-End</h5>
-                    <p class="card-text">This programme teaches languages like JavaScript and Python and data management tools like SQL. This hands-on, project-based learning style prepares you to work as a backend developer after graduation. Suitable for beginners.
-                      Apply Now</p>
-                    <a routerLink="../courseDetails" class="btn btn-primary">Go somewhere</a>
-                  </div>
-                </div>
-          </div>
-          <div class="col-md-4 my-5">
-              <div class="card mx-auto mb-4" style="width: 18rem;">
-                  <img src="./assets/Img/backend.PNG" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Back-End</h5>
-                    <p class="card-text">This programme teaches languages like JavaScript and Python and data management tools like SQL. This hands-on, project-based learning style prepares you to work as a backend developer after graduation. Suitable for beginners.
-                      Apply Now</p>
-                    <a routerLink="../courseDetails" class="btn btn-primary">Go somewhere</a>
-                  </div>
-                </div>
-          </div>
+          }
+        </div>
       </div>
-
-    </div>
 </section>
 <section class="carousel mt-5 container-fluid">
   <owl-carousel-o [options]="customOptions">
@@ -110,21 +90,21 @@
   <div class="title">
     <h3>Latest Jobs</h3>
   </div>
-                <div class="card-body">
-                    <div class="row">
-                    @for (post of posts; track post.id) {
-                      <div style="cursor: pointer;" class="col-lg-3 mt-3" [routerLink]="['../jobApplication', post.id]">
-                        <div
-                          class="border rounded-2 d-flex justify-content-between align-items-center d-lg-block p-3 mb-2 mb-lg-0"
-                          style="background-color: rgb(252, 252, 252);"
-                        >
-                          <p class=" m-0">{{ post.name}}</p>
-                          <p class="pb-2 text-muted fw-normal m-0">{{getTimeAgo(post.createdAt)}}</p>
-                          <p>{{ post.description | slice:0:30 }}<span>....</span></p>
-                        </div>
-                      </div>
-                    }
-
-                    </div>
+        <div class="card-body">
+            <div class="row">
+            @for (post of posts.slice(-6); track post.id) {
+              <div style="cursor: pointer;" class="col-lg-3 mt-3" [routerLink]="['../jobApplication', post.id]">
+                <div
+                  class="border rounded-2 d-flex justify-content-between align-items-center d-lg-block p-3 mb-2 mb-lg-0"
+                  style="background-color: rgb(252, 252, 252);"
+                >
+                  <p class=" m-0">{{ post.name}}</p>
+                  <p class="pb-2 text-muted fw-normal m-0">{{getTimeAgo(post.createdAt)}}</p>
+                  <p>{{ post.description | slice:0:30 }}<span>....</span></p>
                 </div>
+              </div>
+            }
+
+            </div>
+        </div>
 </section> 

@@ -1,53 +1,21 @@
-<div class="track-container" style="margin-top: 100px;">
-    <h2>Select Track</h2>
-    <div class="track-cards">
-      <!-- Frontend Card -->
-      <div class="track-card">
-        <img src="assets/Img/frontend.PNG" alt="Front-End" />
-        <p class="duration">
-          <span class="icon">⏱</span> 8 months / 30 h per week / online
-        </p>
-        <h3>Front-End Web Development</h3>
-        <p class="description">
-          You will learn the basics of writing code in HTML, CSS, and JavaScript,
-          while also focusing on how to design user-friendly websites through
-          UI/UX design and store your code with GitHub. Built to take you from
-          novice to a job-ready developer.
-          <br />
-          Apply Now
-        </p>
-        <button
-          mat-raised-button
-          color="primary"
-          routerLink="../courseDetails"
-        >
-          Apply
-        </button>
-      </div>
-  
-      <!-- Back-End Card -->
-      <div class="track-card">
-        <img src="assets/Img/backend.PNG" alt="Back-End" />
-        <p class="duration">
-          <span class="icon">⏱</span> 8 months / 30 h per week / online
-        </p>
-        <h3>Back-End Web Development</h3>
-        <p class="description">
-          This programme teaches languages like JavaScript and Python and data
-          management tools like SQL. This hands-on, project-based learning style
-          prepares you to work as a backend developer after graduation. Suitable
-          for beginners.
-          <br />
-          Apply Now
-        </p>
-        <button
-          mat-raised-button
-          color="primary"
-          routerLink="../courseDetails"
-        >
-          Apply
-        </button>
-      </div>
+<section class="container">
+    <div class="track-container" style="margin-top: 100px;">
+      <h2 class="text-start title">Select Track</h2>
+        <div class="row g-4 d-flex justify-content-center">
+          @for (track of tracks; track $index) {
+            <div class="col-md-3 mt-5 track">
+              <div class="card mx-auto my-4" style="width: 18rem;">
+                  <img [src]="track.coverUrl" class="card-img-top" [alt]="track.name">
+                  <p class="text-center"><i class="fa-solid fa-clock me-1" style="color: #000000;"></i>{{track.durationInHours}}H</p>
+                  <p class="text-center"><i class="fa-solid fa-layer-group me-1" style="color: #000000;"></i> {{track.difficultyLevel}}</p>
+                  <div class="card-body">
+                    <h5 class="card-title">{{track.name}}</h5>
+                    <p class="card-text">{{track.description}}</p>
+                    <a [routerLink]="['../courseDetails',track.name]" class="btn btn-primary">Apply Now</a>
+                  </div>
+                </div>
+          </div>
+          }
+        </div>
     </div>
-  </div>
-  
+</section>

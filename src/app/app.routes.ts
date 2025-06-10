@@ -74,7 +74,7 @@ export const routes: Routes = [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent, title: 'Home-User' },
       {
-        path: 'courseDetails',
+        path: 'courseDetails/:track',
         component: CourseDetailsComponent,
         title: 'Course Details',
       },

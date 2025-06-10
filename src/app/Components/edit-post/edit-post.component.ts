@@ -112,23 +112,17 @@ ngOnInit(): void {
     },
   });
 }
-
-submit():void{
-  if(this.postJobForm.valid){
-    this._ActivatedRoute.paramMap.subscribe({
-      next: (P) => {
-      let Id = P.get('id')
-      this._JobsService.editPost(Id!,this.postJobForm).subscribe({
-        next:(res)=>{
-          console.log(res);
-        },
-        error:(err)=>{
-          console.log(err);
-        }
-      })
+  submit():void{
+        this._JobsService.editPost(this.job.id,this.postJobForm.value).subscribe({
+          next:(res)=>{
+            console.log('hello')
+            console.log(res);
+          },
+          error:(err)=>{
+            console.log('error');
+            console.log(err)
+          }
+        })
       }
-    })
 }
-}
-  
-}
+

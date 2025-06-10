@@ -1,6 +1,6 @@
-<section class="header my-5 text-center d-flex justify-content-center align-items-center" style="margin-top: 100px;">
+<section class="header my-5 text-center d-flex justify-content-center align-items-center" style="margin-top: 150px;">
     <div class="title">
-        <h2>Front End Web Based on Angular</h2>
+        <h2>{{user?.preferredJobTitle}}</h2>
     </div>
 </section>
 <section>
@@ -12,7 +12,6 @@
     <img class="rounded-circle img-fluid" style="width: 40%;" [src]="[user?.pictureUrl]" alt="User">
     <div class="ms-4 text-start">
       <h5>Name: <span class="font-monospace">{{ user?.firstName}} </span> <span class="font-monospace">{{user?.lastName}}</span></h5>
-      <h5>Job Title: <span class="font-monospace">{{ user?.preferredJobTitle }}</span></h5>
       <h5>Education Level: <span class="font-monospace">{{ user?.educationLevel }}</span></h5>
       <h5>Email: <span class="font-monospace">{{ user?.email }}</span></h5>
       <h5>Resume: <a style="text-decoration: none; color: #000000;" class="font-monospace" [href]="user?.resumeUrl">{{user?.firstName | uppercase}} URL<i class="ms-1 fa-solid fa-download ms-1z" style="color: #000000;"></i></a></h5>

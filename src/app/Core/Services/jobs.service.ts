@@ -23,8 +23,11 @@ export class JobsService {
     DeleteJobs(id:number):Observable<any>{
       return this._HttpClient.delete(`${enviornment.baseUrl}/api/Job/${id}`)
     }
-    editPost(id:string , data:object):Observable<any>{
-      return this._HttpClient.patch(`${enviornment.baseUrl}/api/Job/Update/${id}`,data);
+    editPost(id:number , data:object):Observable<any>{
+      return this._HttpClient.patch(`${enviornment.baseUrl}/api/Job/${id}`,data);
+    }
+    getUserJobs():Observable<any>{
+      return this._HttpClient.get(`${enviornment.baseUrl}/api/Jpb/AppliedJobs`)
     }
   
 }

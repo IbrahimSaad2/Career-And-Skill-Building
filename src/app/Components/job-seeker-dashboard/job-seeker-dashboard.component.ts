@@ -12,6 +12,7 @@ import {   ApexChart,
 import { log } from 'console';
 import { UpperCasePipe } from '@angular/common';
 import { NavbarStateService } from '../../Core/Services/navbar-state-service.service';
+import { JobsService } from '../../Core/Services/jobs.service';
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -32,6 +33,7 @@ export type ChartOptions = {
 })
 export class JobSeekerDashboardComponent implements OnInit{
   private readonly navbarService = inject(NavbarStateService)
+  private readonly _JobsService = inject(JobsService)
   
 
 user: IUser | null = null;
@@ -46,6 +48,14 @@ ngOnInit(): void {
   else{
     console.log("helle")
   }
+  this._JobsService.getUserJobs().subscribe({
+    next:(res)=>{
+      console.log(res);
+    },
+    error:(err)=>{
+      console.log(err);
+    }
+  })
 }
 
 

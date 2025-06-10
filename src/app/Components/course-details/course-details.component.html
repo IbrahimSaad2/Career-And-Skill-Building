@@ -1,76 +1,29 @@
-<div class="container py-5" style="margin-top: 100px;">
-  <h2 class="mb-4 text-center fw-bold"> Explore Top Courses</h2>
-
-  @if (isLoading) {
-    <div class="d-flex justify-content-center py-5">
-      <div class="spinner-border text-primary" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-    </div>
-  }
-
-  @if (errorOccurred) {
-    <div class="alert alert-danger text-center" role="alert">
-      <i class="fa-solid fa-triangle-exclamation me-2"></i>
-      Failed to load courses. Please <button class="btn btn-link p-0" (click)="reload()">reload</button> the page.
-    </div>
-  }
-
-  @if (!isLoading && !errorOccurred) {
-    <div class="row g-4">
-      @for (course of courses; track course.Name) {
-        <div class="col-md-4">
-          <div class="card h-100 p-4 shadow-lg border-0 rounded-4 text-center course-card">
-            <div class="card-body">
-              <div class="icon-circle mx-auto mb-3">
-                <i class="fa-solid fa-code fa-2x text-primary"></i>
-              </div>
-              <h5 class="card-title fw-semibold mb-2">{{ course.Name }}</h5>
-              <span class="badge bg-info text-dark mb-2 me-2">
-                <i class="fa-solid fa-clock me-1 py-2 "></i> {{ course?.Duration || 'Unknown' }}
-              </span>
-              <button class="btn btn-outline-primary mt-2" (click)="openDialog(course)">
-                <i class="fa-solid fa-eye me-1"></i> View Course
-              </button>
-            </div>
+<section class="container" style="margin-top: 100px ;">
+  <h3 class="text-start title">Course</h3>
+    <h4>{{track.Name}}</h4>
+    <p>{{track.providerName}}</p>
+    <a style="font-size: 20px; color: blue; text-decoration: none;" [href]="track.URL">Track</a>
+    <p class="lead">{{track.Details}}</p>
+    <p>{{track.difficultyLevel}}</p>
+          <div class="row d-flex justify-content-center">
+          @for (track of track.Courses; track $index) {
+            <div class="col-md-3 py-4 mt-5 track">
+              <div class="card mx-auto my-4" style="width: 18rem;">
+                  <p class="text-center"><i class="fa-solid fa-layer-group me-1" style="color: #000000;"></i> {{track.courseDifficulty}}</p>
+                  <div class="card-body">
+                    <h5 class="card-title">{{track.Name}}</h5>
+                    <div class="row">
+                    <h5 class="lead mt-2">Skills</h5>
+                    @for (skills of  track.Skills; track $index) {
+                        <div class="track">
+                            <p style="background-color: #f2f2f2; border-radius: 2rem; padding: 4px; text-align: center;">{{skills}}</p>
+                        </div>
+                      }
+                    </div>
+                    <a [href]="track.URL" class="btn btn-primary my-3">Take Course</a>
+                  </div>
+                </div>
           </div>
+          }
         </div>
-      }
-    </div>
-  }
-
-  @if (selectedCourse) {
-    <div class="dialog-backdrop" (click)="closeDialog()"></div>
-    <div class="dialog-box animate">
-      <h4 class="fw-bold ">
-        <i class="fa-solid fa-laptop-code me-2 text-primary"></i>{{ selectedCourse.Name }}
-      </h4>
-      <p class="text-muted">
-        <i class="fa-solid fa-clock me-1"></i> {{ selectedCourse.Duration || 'Not Specified' }}
-      </p>
-    <p><strong>Skills:</strong></p>
-
-    @if (selectedCourse.Skills && selectedCourse.Skills.length > 0) {
-      <ul class="list-unstyled ps-3">
-        @for (skill of selectedCourse.Skills; track skill) {
-          <li>{{ skill }}</li>
-        }
-      </ul>
-    }
-    @else {
-      <div class="text-muted fst-italic ps-3">
-        <i class="fa-solid fa-circle-info me-1"></i> Click Apply to know more.
-      </div>
-    }
-
-      <div class="d-flex justify-content-end gap-2 mt-4">
-        <button class="btn btn-secondary" (click)="closeDialog()">
-          <i class="fa-solid fa-xmark me-1"></i> Close
-        </button>
-        <a [href]="selectedCourse.URL" target="_blank" class="btn btn-success">
-          <i class="fa-solid fa-paper-plane me-1"></i> Apply
-        </a>
-      </div>
-    </div>
-  }
-</div>
+</section>

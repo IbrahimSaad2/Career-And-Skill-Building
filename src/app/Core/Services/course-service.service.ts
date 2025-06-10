@@ -3,13 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { enviornment } from './environments/environment';
 
-
-export interface Course {
-  Name: string;
-  Duration?: string;
-  Skills?: string[];
-  URL?: string;
-}
 @Injectable({
   providedIn: 'root'
 })
@@ -19,6 +12,6 @@ export class CourseServiceService {
 
 
   getCourses(query:string): Observable<any> {
-    return this._HttpClient.get(`${enviornment.baseCourses}${query}`) ;
+    return this._HttpClient.get(`${enviornment.baseCourses}=${query}`) ;
   }
 }
