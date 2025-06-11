@@ -64,11 +64,11 @@
                 <div class="my-3 text-start">
                 <label for="educationLevel">Education Level</label>
                 <select id="educationLevel" class="form-control rounded-2 w-100 my-2" formControlName="educationLevel">
-                    <option value="" disabled selected>Select Education Level</option>
-                    <option value="1">associate</option>
-                    <option value="2">bachelor's</option>
-                    <option value="3">master's</option>
-                    <option value="4">doctoral</option>
+                    <option [ngValue]="" disabled selected>Select Education Level</option>
+                    <option [ngValue]="1">associate</option>
+                    <option [ngValue]="2">bachelor's</option>
+                    <option [ngValue]="3">master's</option>
+                    <option [ngValue]="4">doctoral</option>
                 </select>
                 <!-- Validation message -->
                 @if (SignupForm.get('educationLevel')?.errors && SignupForm.get('educationLevel')?.touched) {

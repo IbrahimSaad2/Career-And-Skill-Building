@@ -1,9 +1,8 @@
 
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { interval, Subscription } from 'rxjs';
-import { NavbarStateService } from '../../Core/Services/navbar-state-service.service';
 @Component({
   selector: 'app-exam',
   standalone: true,
@@ -12,10 +11,6 @@ import { NavbarStateService } from '../../Core/Services/navbar-state-service.ser
   styleUrl: './exam.component.css',
 })
 export class ExamComponent implements OnInit {
-
-      private readonly navbarService = inject(NavbarStateService)
-    
-  
    questions = [
     { id: 1, question: 'Question 1?', options: ['A', 'B', 'C', 'D'], correctAnswer: 'A' },
     { id: 2, question: 'Question 2?', options: ['A', 'B', 'C', 'D'], correctAnswer: 'B' },
@@ -36,7 +31,6 @@ export class ExamComponent implements OnInit {
   ngOnInit(): void {
     const storedAttempts = localStorage.getItem('examAttempts');
     this.attempts = storedAttempts ? parseInt(storedAttempts) : 0;
-    this.navbarService.setScrolled(true);
   }
 
   startExam() {

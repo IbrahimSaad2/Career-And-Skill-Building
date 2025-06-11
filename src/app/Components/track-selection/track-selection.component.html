@@ -10,7 +10,7 @@
                   <p class="text-center"><i class="fa-solid fa-layer-group me-1" style="color: #000000;"></i> {{track.difficultyLevel}}</p>
                   <div class="card-body">
                     <h5 class="card-title">{{track.name}}</h5>
-                    <p class="card-text">{{track.description}}</p>
+                    <p class="card-text">{{track.description.slice(0 , 200)}}...</p>
                     <a [routerLink]="['../courseDetails',track.name]" class="btn btn-primary">Apply Now</a>
                   </div>
                 </div>

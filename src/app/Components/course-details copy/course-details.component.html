@@ -1,0 +1,81 @@
+<div class="container pt-5 mt-5">
+  <div class="mb-4 d-flex justify-content-center align-items-center">
+    <input [(ngModel)]="searchQuery" (keydown.enter)="search()" type="text" class="form-control w-50 me-2" placeholder="Search for a track..." />
+    <button class="btn btn-primary" (click)="search()">
+      <i class="fa fa-search me-1"></i> Search
+    </button>
+  </div>
+</div>
+
+<div class="container pb-5">
+  <h2 class="mb-4 text-center fw-bold">Explore Top Courses</h2>
+
+  <div *ngIf="isLoading" class="d-flex justify-content-center py-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <div *ngIf="errorOccurred" class="alert alert-danger text-center" role="alert">
+    <i class="fa-solid fa-triangle-exclamation me-2"></i>
+    Failed to load courses. Please
+    <button class="btn btn-link p-0" (click)="reload()">reload</button> the page.
+  </div>
+
+  <div *ngIf="!isLoading && !errorOccurred">
+    <div class="row g-4">
+      <div class="col-md-4" *ngFor="let course of courses; trackBy: trackByName">
+        <div class="card h-100 p-4 shadow-lg border-0 rounded-4 text-center course-card">
+          <div class="card-body">
+            <div class="icon-circle mx-auto mb-3">
+              <i class="fa-solid fa-code fa-2x text-primary"></i>
+            </div>
+            <h5 class="card-title fw-semibold mb-2">{{ course.Name }}</h5>
+            <span class="badge bg-info text-dark mb-2 me-2">
+              <i class="fa-solid fa-clock me-1 py-2"></i> {{ course?.DurationInHours || 'Unknown' }}
+            </span>
+            <button class="btn btn-outline-primary mt-2" (click)="openDialog(course)">
+              <i class="fa-solid fa-eye me-1"></i> View Course
+            </button>
+
+            <button class="btn btn-warning mt-2" (click)="goToExam(course)">
+              <i class="fa-solid fa-graduation-cap me-1"></i> I finished the course
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selectedCourse">
+    <div class="dialog-backdrop" (click)="closeDialog()"></div>
+    <div class="dialog-box animate">
+      <h4 class="fw-bold">
+        <i class="fa-solid fa-laptop-code me-2 text-primary"></i>{{ selectedCourse.Name }}
+      </h4>
+      <p class="text-muted">
+        <i class="fa-solid fa-clock me-1"></i> {{ selectedCourse.DurationInHours || 'Not Specified' }}
+      </p>
+      <p><strong>Skills:</strong></p>
+
+      <ul *ngIf="selectedCourse.Skills && selectedCourse.Skills.length > 0; else noSkills" class="list-unstyled ps-3">
+        <li *ngFor="let skill of selectedCourse.Skills">{{ skill }}</li>
+      </ul>
+
+      <ng-template #noSkills>
+        <div class="text-muted fst-italic ps-3">
+          <i class="fa-solid fa-circle-info me-1"></i> Click Apply to know more.
+        </div>
+      </ng-template>
+
+      <div class="d-flex justify-content-end gap-2 mt-4">
+        <button class="btn btn-secondary" (click)="closeDialog()">
+          <i class="fa-solid fa-xmark me-1"></i> Close
+        </button>
+        <a [href]="selectedCourse.URL" target="_blank" class="btn btn-success">
+          <i class="fa-solid fa-paper-plane me-1"></i> Apply
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
