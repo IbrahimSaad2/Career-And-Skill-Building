@@ -1,4 +1,4 @@
-import { Course } from './../../Core/interfaces/course';
+import { Course } from '../../Core/interfaces/course';
 import { Component, OnInit, inject } from '@angular/core';
 import { CourseServiceService } from '../../Core/Services/course-service.service';
 import { NgFor, NgIf } from '@angular/common';

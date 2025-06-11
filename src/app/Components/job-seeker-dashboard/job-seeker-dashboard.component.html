@@ -9,7 +9,7 @@
 <div class="row align-items-center text-center" >
   <!-- User Info Section -->
   <div class="col-md-6 d-flex justify-content-center align-items-center mt-3">
-    <img class="rounded-circle img-fluid" style="width: 40%;" src="../../../assets/Img/profile.jpg" alt="User">
+    <img class="rounded-circle img-fluid" style="width: 40%;" src="./assets/Img/profile.jpg" alt="User">
     <div class="ms-4 text-start">
       <h5>Name: <span class="font-monospace">{{ user?.firstName}} </span> <span class="font-monospace">{{user?.lastName}}</span></h5>
       <h5>Education Level: <span class="font-monospace">{{ user?.educationLevel }}</span></h5>
@@ -121,6 +121,14 @@
         <p>Angular</p>
         <p>Computer Scince</p>
         <p>Sql</p>
+    </div>
+</section>
+<section class="container skill mt-5">
+    <div class="py-3">
+        <h4>Discreption</h4>
+    </div>
+    <div class="tools">
+        <p class="lead">{{user?.userGoal}}</p>
     </div>
 </section>
 <!-- <section>
