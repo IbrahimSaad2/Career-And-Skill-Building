@@ -1,100 +1,129 @@
-
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, inject } from '@angular/core';
+import { QuestionService, Question } from '../../Core/Services/question.service';
+import { Router } from '@angular/router';
+import { NgIf,NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { interval, Subscription } from 'rxjs';
+import { NgClass } from '@angular/common';
 @Component({
   selector: 'app-exam',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
   templateUrl: './exam.component.html',
-  styleUrl: './exam.component.css',
+  imports:[NgFor,NgIf,FormsModule,NgClass],
+  styleUrls: ['./exam.component.css']
 })
 export class ExamComponent implements OnInit {
-   questions = [
-    { id: 1, question: 'Question 1?', options: ['A', 'B', 'C', 'D'], correctAnswer: 'A' },
-    { id: 2, question: 'Question 2?', options: ['A', 'B', 'C', 'D'], correctAnswer: 'B' },
-    { id: 3, question: 'Question 3?', options: ['A', 'B', 'C', 'D'], correctAnswer: 'C' }
-  ];
-
-   currentQuestionIndex = 0;
-  answers: { [key: number]: string } = {};
-  totalTime = 300;
-  remainingTime = this.totalTime;
-  timerSubscription!: Subscription;
-  examStarted = false;
-  examFinished = false;
-  examResult = '';
+  questions: Question[] = [];
+  currentQuestionIndex = 0;
+  userAnswers: string[] = [];
+  quizFinished = false;
+  score = 0;
+  showResults = false;
   attempts = 0;
   maxAttempts = 2;
+  resultMessage = '';
+  isPassed = false;
+
+  totalTime = 600; 
+  timerDisplay = '';
+  timerInterval: any;
+
+  // constructor(private questionService: QuestionService) {}
+
+  constructor(private questionService: QuestionService, private router: Router) {}
 
   ngOnInit(): void {
     const storedAttempts = localStorage.getItem('examAttempts');
-    this.attempts = storedAttempts ? parseInt(storedAttempts) : 0;
-  }
+    this.attempts = storedAttempts ? +storedAttempts : 0;
 
-  startExam() {
-    if (this.attempts >= this.maxAttempts) return;
-    this.examStarted = true;
-    this.examFinished = false;
-    this.answers = {};
-    this.remainingTime = this.totalTime;
-    this.currentQuestionIndex = 0;
-    this.startTimer();
-  }
+    if (this.attempts >= this.maxAttempts) {
+      alert('You have reached the maximum number of attempts.');
+      this.router.navigate(['/']); 
+      return;
+    }
 
-  startTimer() {
-    this.timerSubscription = interval(1000).subscribe(() => {
-      this.remainingTime--;
-      if (this.remainingTime <= 0) {
-        this.submitExam();
+    this.questionService.getQuestions(['JavaScript', 'Programming Principles']).subscribe({
+      next: (res: any) => {
+        this.questions = res.questions;
+        this.userAnswers = new Array(this.questions.length).fill('');
+        this.startTimer();
       }
     });
   }
+finishQuiz() {
+  if (this.quizFinished) return;
+  this.quizFinished = true;
+  clearInterval(this.timerInterval);
 
-  selectAnswer(option: string) {
-    const questionId = this.questions[this.currentQuestionIndex].id;
-    this.answers[questionId] = option;
-    console.log(this.answers);
+  this.score = this.questions.reduce((acc, q, i) =>
+    acc + (q.correct === this.userAnswers[i] ? 1 : 0), 0);
+
+  const percentage = (this.score / this.questions.length) * 100;
+
+  console.log('Exam Finished ');
+  console.log(`Your score: ${this.score} out of ${this.questions.length}`);
+  console.log(`Percentage: ${percentage.toFixed(2)}%`);
+
+  if (percentage >= 70) {
+    this.resultMessage = ' Congratulations! You passed the exam.';
+    this.isPassed = true;
+    console.log(' Congratulations! You passed the exam.');
+  } else {
+    this.resultMessage = ' Unfortunately, you did not pass the exam.';
+    this.isPassed = false;
+    console.log(' Unfortunately, you did not pass the exam.');
+  }
+
+  this.attempts++;
+  localStorage.setItem('examAttempts', this.attempts.toString());
+}
+
+
+
+
+confirmFinish() {
+  const confirmEnd = confirm('Are you sure you want to end the quiz?');
+  if (confirmEnd) {
+    this.finishQuiz();
+  }
+}
+
+
+  startTimer() {
+    this.updateTimerDisplay();
+    this.timerInterval = setInterval(() => {
+      this.totalTime--;
+      this.updateTimerDisplay();
+      if (this.totalTime <= 0) {
+        this.finishQuiz();
+      }
+    }, 1000);
+  }
+
+  updateTimerDisplay() {
+    const minutes = Math.floor(this.totalTime / 60);
+    const seconds = this.totalTime % 60;
+    this.timerDisplay = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  }
+
+  selectAnswer(answer: string) {
+    this.userAnswers[this.currentQuestionIndex] = answer;
   }
 
   nextQuestion() {
     if (this.currentQuestionIndex < this.questions.length - 1) {
       this.currentQuestionIndex++;
     } else {
-      this.submitExam();
+      this.finishQuiz();
     }
   }
 
-  submitExam() {
-    if (this.timerSubscription) {
-      this.timerSubscription.unsubscribe();
+  prevQuestion() {
+    if (this.currentQuestionIndex > 0) {
+      this.currentQuestionIndex--;
     }
-
-    this.examStarted = false;
-    this.examFinished = true;
-
-    let score = 0;
-    this.questions.forEach(q => {
-      if (this.answers[q.id] === q.correctAnswer) {
-        score++;
-      }
-    });
-
-    const percentage = (score / this.questions.length) * 100;
-    this.examResult = percentage >= 50 ? ' Passed' : ' Failed';
-
-    this.attempts++;
-    localStorage.setItem('examAttempts', this.attempts.toString());
   }
 
-  get progress(): number {
-    return ((this.currentQuestionIndex + 1) / this.questions.length) * 100;
-  }
 
-  formatTime(seconds: number): string {
-    const minutes = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+  toggleResults() {
+    this.showResults = !this.showResults;
   }
 }
