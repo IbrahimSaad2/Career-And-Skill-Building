@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
     tracks:Tracks[] = [];
   
     ngOnInit(): void {
-      this.allPosts = this._jobs.getJobs().subscribe({
+      this.allPosts = this._jobs.getJobs('').subscribe({
         next: (res) => {
           console.log(res);
           this.posts = res;
@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
           console.log(err);
         },
       });
-      this._TrackService.getallTracks('').subscribe({
+      this._TrackService.getallTracks().subscribe({
         next:(res)=>{
           console.log(res)
           this.tracks = res

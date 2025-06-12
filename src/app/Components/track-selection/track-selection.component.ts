@@ -17,7 +17,7 @@ export class TrackSelectionComponent {
     tracks:Tracks[] = []
     ngOnInit(): void {
       this.navbarService.setScrolled(true);  
-      this._TrackService.getallTracks('').subscribe({
+      this._TrackService.getallTracks().subscribe({
         next:(res)=>{
           console.log(res);
           this.tracks = res
@@ -32,7 +32,7 @@ searchQuery = '';
 searchTrack(): void {
   const query = this.searchQuery.trim();
   if (query) {
-    this._TrackService.getallTracks(query).subscribe({
+    this._TrackService.getById(query).subscribe({
       next: (res) => {
         console.log(res);
         this.tracks = res;
@@ -43,6 +43,4 @@ searchTrack(): void {
     });
   }
 }
-
-  
 }

@@ -135,25 +135,31 @@
     <div class="py-3 titleJob">
         <h4>Job Applied</h4>
     </div>
-    <div class="py-3">
-        @if  (jobs) {
-            @for (job of jobs; track $index) {
-                <div class="row border-bottom">
-                <div class="jobapply my-3 col-md-8" routerLink="../jobApplication/{{job.id}}" style="cursor: pointer;">
-                    <h4>{{job.name}}</h4>
-                    <h6 style="color: var(--main-color);">{{job.companyName}}</h6>
-                    <p>{{job.description}}</p>
-                </div>
-                <div class="col-md-4 d-flex align-items-center justify-content-end pe-2">
-                <button (click)="delete(job.id)" class="btn btn-danger mb-2">Delete This Job</button>
-                </div>
-                </div>
-            }
-        }
-        @else {
-            <p class="lead">Not Job To Review</p>
-        }
-    </div>
+<div class="py-3">
+  @if (jobs.length > 0) {
+    @for (job of jobs; track job.id) {
+      <div class="row border-bottom">
+        <div
+          class="jobapply my-3 col-md-8"
+          [routerLink]="['../jobApplication', job.id]"
+          style="cursor: pointer"
+        >
+          <h4>{{ job.name }}</h4>
+          <h6 style="color: var(--main-color)">{{ job.companyName }}</h6>
+          <p>{{ job.description }}</p>
+        </div>
+        <div class="col-md-4 d-flex align-items-center justify-content-end pe-2">
+          <button (click)="delete(job.id)" class="btn btn-danger mb-2">
+            Delete This Job
+          </button>
+        </div>
+      </div>
+    }
+  } @else {
+    <p class="lead">No Job To Review</p>
+  }
+</div>
+
 </section>
 
 <section class="me-auto button ">

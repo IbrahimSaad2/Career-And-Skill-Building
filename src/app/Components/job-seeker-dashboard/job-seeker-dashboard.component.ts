@@ -45,7 +45,7 @@ user: IUser | null = null;
 jobs:IPosts[] = []
 
 ngOnInit(): void {
-    this.navbarService.setScrolled(true);  
+  this.navbarService.setScrolled(true);  
   const storedUser = localStorage.getItem('details');
   if (storedUser) {
     this.user = JSON.parse(storedUser);
@@ -54,14 +54,6 @@ ngOnInit(): void {
   else{
     console.log("helle")
   }
-  this._JobsService.getUserJobs().subscribe({
-    next:(res)=>{
-      console.log(res);
-    },
-    error:(err)=>{
-      console.log(err);
-    }
-  })
   this._JobsService.getUserJobs().subscribe({
     next:(res)=>{
       console.log(res);
@@ -78,6 +70,15 @@ delete(id:number):void{
   this._JobsService.DeleteJobs(id).subscribe({
     next:(res)=>{
       console.log(res);
+      this._JobsService.getUserJobs().subscribe({
+        next:(res)=>{
+          console.log(res)
+          this.jobs = res
+        },
+        error:(err)=>{
+          console.log(err)
+        }
+      })
     },
     error:(err)=>{
       console.log(err);

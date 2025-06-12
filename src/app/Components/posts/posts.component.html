@@ -21,34 +21,33 @@
 </div>
 
 <div class="posts container">
-
-  @if (filteredPost) {
-      @for (filter of filteredPost; track filter.id) {
-        <div class="border-bottom row position-relative">
-          <div class="row job" [routerLink]="['../jobApplication', filter.id]">
-            <div class="col-md-8">
-              <h4 class="my-3">{{ filter.name }}</h4>
-              <h6 class="my-3" style="color: var(--main-color);">{{ filter.companyName }}</h6>
-            </div>
-            <div class="col-md-2 position-relative mt-3 text-center" style="left: 20%; font-weight: 600;">
-              <p>filtered {{ getTimeAgo(filter.createdAt) }}</p>
-            </div>
-            <div class="row">
-              <div class="col-md-1 rounded mx-2 text-center" style="background-color: rgb(234, 234, 234);">
-                <p class="position-relative" style="top: 7px;">{{ filter.location.city }}</p>
-              </div>
-              <div class="col-md-1 rounded mx-2 text-center" style="background-color: rgb(234, 234, 234);">
-                <p class="position-relative" style="top: 7px;">{{ filter.employmentType }}</p>
-              </div>
-            </div>
-            <div class="col-md-12 mt-3">
-              <p>{{ filter.description }}</p>
-            </div>
-          </div>
+  @if (searchQuery) {
+    @for (filter of filteredPost; track filter.id) {
+  <div class="border-bottom row position-relative">
+    <div class="row job" [routerLink]="['../jobApplication', filter.id]">
+      <div class="col-md-8">
+        <h4 class="my-3">{{ filter.name }}</h4>
+        <h6 class="my-3" style="color: var(--main-color);">{{ filter.companyName }}</h6>
+      </div>
+      <div class="col-md-2 position-relative mt-3 text-center" style="left: 20%; font-weight: 600;">
+        <p>filtered {{ getTimeAgo(filter.createdAt)}}</p>
+      </div>
+      <div class="row">
+        <div class="col-md-1 rounded mx-2 text-center" style="background-color: rgb(234, 234, 234);">
+          <p class="position-relative" style="top: 7px;">{{ filter.location.city }}</p>
         </div>
-      }
-
-  } @else {
+        <div class="col-md-1 rounded mx-2 text-center" style="background-color: rgb(234, 234, 234);">
+          <p class="position-relative" style="top: 7px;">{{ filter.employmentType }}</p>
+        </div>
+      </div>
+      <div class="col-md-12 mt-3">
+        <p>{{ filter.description }}</p>
+      </div>
+    </div>
+  </div>
+  }
+  } 
+  @else {
         @for (post of posts; track post.id) {
       <div class="border-bottom row position-relative">
         <div class="row job" [routerLink]="['../jobApplication', post.id]">
