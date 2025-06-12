@@ -8,6 +8,7 @@ import { SlicePipe } from '@angular/common';
 import { NavbarStateService } from '../../Core/Services/navbar-state-service.service';
 import { Tracks } from '../../Core/interfaces/tracks';
 import { TrackService } from '../../Core/Services/track.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -56,7 +57,7 @@ export class HomeComponent implements OnInit {
           console.log(err);
         },
       });
-      this._TrackService.getallTracks().subscribe({
+      this._TrackService.getallTracks('').subscribe({
         next:(res)=>{
           console.log(res)
           this.tracks = res

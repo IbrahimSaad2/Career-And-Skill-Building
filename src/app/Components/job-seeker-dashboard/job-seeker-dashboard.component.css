@@ -123,3 +123,13 @@
     margin-top: 70px;
     padding: 8px;
   }
+  .titleJob::after {
+    content: "";
+    display: block;
+    width: 55px;
+    height: 5px;
+    background-color: #000;
+    position: relative;
+    left: 3px;
+    bottom: 5px;
+}

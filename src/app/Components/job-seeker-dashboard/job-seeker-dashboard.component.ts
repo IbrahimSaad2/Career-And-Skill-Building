@@ -1,7 +1,8 @@
+import { Job } from './../../Core/interfaces/job';
 import { IUser } from './../../Core/interfaces/iuser';
 import { Component,inject,OnInit,ViewChild } from '@angular/core';
-import { routes } from '../../app.routes';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+
 import {   ApexChart,
   ApexNonAxisChartSeries,
   ApexPlotOptions,
@@ -13,6 +14,10 @@ import { log } from 'console';
 import { UpperCasePipe } from '@angular/common';
 import { NavbarStateService } from '../../Core/Services/navbar-state-service.service';
 import { JobsService } from '../../Core/Services/jobs.service';
+import { TrackService } from '../../Core/Services/track.service';
+import { CourseServiceService } from '../../Core/Services/course-service.service';
+import { HttpClient } from '@angular/common/http';
+import { IPosts } from '../../Core/interfaces/IPosts';
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -27,7 +32,7 @@ export type ChartOptions = {
 
 @Component({
   selector: 'app-job-seeker-dashboard',
-  imports: [RouterLink, NgApexchartsModule,UpperCasePipe],
+  imports: [RouterLink,NgApexchartsModule,UpperCasePipe],
   templateUrl: './job-seeker-dashboard.component.html',
   styleUrl: './job-seeker-dashboard.component.css'
 })
@@ -37,6 +42,7 @@ export class JobSeekerDashboardComponent implements OnInit{
   
 
 user: IUser | null = null;
+jobs:IPosts[] = []
 
 ngOnInit(): void {
     this.navbarService.setScrolled(true);  
@@ -49,6 +55,27 @@ ngOnInit(): void {
     console.log("helle")
   }
   this._JobsService.getUserJobs().subscribe({
+    next:(res)=>{
+      console.log(res);
+    },
+    error:(err)=>{
+      console.log(err);
+    }
+  })
+  this._JobsService.getUserJobs().subscribe({
+    next:(res)=>{
+      console.log(res);
+      this.jobs = res
+      console.log('hello')
+    },
+    error:(err)=>{
+      console.log(err);
+    }
+  })
+}
+
+delete(id:number):void{
+  this._JobsService.DeleteJobs(id).subscribe({
     next:(res)=>{
       console.log(res);
     },

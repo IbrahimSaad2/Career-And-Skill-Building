@@ -7,6 +7,8 @@ import {  provideClientHydration, withEventReplay } from '@angular/platform-brow
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { loadingInterceptor } from './Core/interceptor/loading.interceptor';
+import { provideToastr } from 'ngx-toastr';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), 
@@ -15,6 +17,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch(),withInterceptors([headerInterceptor,loadingInterceptor])),
     provideAnimations(),
     importProvidersFrom(NgxSpinnerModule),
+    provideToastr()
 
   ]
 };

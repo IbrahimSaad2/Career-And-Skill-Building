@@ -8,7 +8,11 @@ import { enviornment } from './environments/environment';
 })
 export class TrackService {
   private readonly _HttpClient = inject(HttpClient)
-  getallTracks():Observable<any>{
-    return this._HttpClient.get(`${enviornment.baseUrl}/api/Tracks`)
-  }
+    getallTracks(query: string): Observable<any> {
+      if (!query || query.trim() === '') {
+              return this._HttpClient.get(`${enviornment.baseUrl}/api/Tracks`);
+      }
+
+      return this._HttpClient.get(`${enviornment.baseUrl}/api/Tracks?searchWord=${query}`);
+    }
 }

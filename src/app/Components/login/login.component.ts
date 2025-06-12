@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../Core/Services/auth.service';
 import { NavbarStateService } from '../../Core/Services/navbar-state-service.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,8 @@ export class LoginComponent {
   private readonly _FormBuilder = inject(FormBuilder)
   private readonly _Router = inject(Router)
    private navbarService = inject(NavbarStateService);
+     private readonly _ToastrService = inject(ToastrService)
+
 
   ngOnInit() {
     this.navbarService.setScrolled(true); // solid background
@@ -44,11 +47,13 @@ loginSubmit(): void {
           localStorage.setItem('details', JSON.stringify(res));
           this._Router.navigate(['../jobseeker/home']);
           console.log(res)
+          this._ToastrService.success("Welcome Back")
         
       },
       error: (err) => {
         console.log(err);
         this.messageError = err.error.errorMessage;
+        this._ToastrService.error("Login Faild")
       }
     });
 

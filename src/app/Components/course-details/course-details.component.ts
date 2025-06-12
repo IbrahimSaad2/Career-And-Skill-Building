@@ -1,9 +1,8 @@
-import { Course } from '../../Core/interfaces/course';
 import { Component, OnInit, inject } from '@angular/core';
-import { CourseServiceService } from '../../Core/Services/course-service.service';
+import { CourseServiceService, Course } from '../../Core/Services/course-service.service';
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-course-details',
@@ -21,9 +20,15 @@ export class CourseDetailsComponent implements OnInit {
 
   private courseService = inject(CourseServiceService);
   private router = inject(Router);
+  private readonly _ActivatedRoute = inject(ActivatedRoute)
 
   ngOnInit(): void {
-    this.fetchCourses('frontend');
+    this._ActivatedRoute.paramMap.subscribe({
+      next:(res)=>{
+        let q = res.get('track')
+        this.fetchCourses(q!);
+      }
+    })
   }
 
   fetchCourses(query: string) {
@@ -47,7 +52,7 @@ export class CourseDetailsComponent implements OnInit {
     if (query) this.fetchCourses(query);
   }
 
-  trackByName(index: number, course: Course): string {
+  trackByName(index:number, course: Course): string {
     return course.Name;
   }
 

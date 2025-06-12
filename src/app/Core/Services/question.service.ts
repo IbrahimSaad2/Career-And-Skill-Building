@@ -14,12 +14,10 @@ export interface Question {
 
 @Injectable({ providedIn: 'root' })
 export class QuestionService {
- private API = '/api/questions'; 
-
   constructor(private http: HttpClient) {}
 
   getQuestions(skills: string[]): Observable<Question[]> {
     const query = skills.map(s => `skill=${encodeURIComponent(s)}`).join('&');
-    return this.http.get<Question[]>(`${this.API}?${query}`);
+    return this.http.get<Question[]>(`https://carrerandskillbuildingquestions-guf4buasb8hahjh8.italynorth-01.azurewebsites.net/questions?skills=${query}`);
   }
 }

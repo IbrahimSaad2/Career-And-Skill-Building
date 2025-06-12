@@ -2,6 +2,12 @@ import { inject, Inject, Injectable, Injector } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { enviornment } from './environments/environment';
+export interface Course {
+  Name: string;
+  DurationInHours?: string;
+  Skills?: string[];
+  URL?: string;
+}
 
 @Injectable({
   providedIn: 'root'

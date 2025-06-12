@@ -8,8 +8,11 @@ import { enviornment } from './environments/environment';
 })
 export class JobsService {
     private readonly _HttpClient = inject(HttpClient);
-    getJobs():Observable<any>{
-      return this._HttpClient.get(`${enviornment.baseUrl}/api/Job`)
+    getJobs(query:string):Observable<any>{
+        if (!query || query.trim() === '') {
+              return this._HttpClient.get(`${enviornment.baseUrl}/api/Job`);
+      }
+      return this._HttpClient.get(`${enviornment.baseUrl}/api/Job/?searchWord=${query}`)
     }
     getSpecificJob(id:string|null):Observable<any>{
       return this._HttpClient.get(`${enviornment.baseUrl}/api/Job/${id}`)
@@ -27,7 +30,13 @@ export class JobsService {
       return this._HttpClient.patch(`${enviornment.baseUrl}/api/Job/${id}`,data);
     }
     getUserJobs():Observable<any>{
-      return this._HttpClient.get(`${enviornment.baseUrl}/api/Jpb/AppliedJobs`)
+      return this._HttpClient.get(`${enviornment.baseUrl}/api/Job/AppliedJobs`)
+    }
+    deleteJobApply(id:number):Observable<any>{
+      return this._HttpClient.delete(`${enviornment.baseUrl}/api/Job/UnApply/${id}`)
     }
   
+    ApplyJob(id:any):Observable<any>{
+      return this._HttpClient.put(`${enviornment.baseUrl}/api/Job/apply/${id}`,null)
+    }
 }

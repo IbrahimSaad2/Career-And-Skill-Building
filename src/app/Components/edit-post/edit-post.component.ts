@@ -5,6 +5,7 @@ import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Va
 import { NavbarStateService } from '../../Core/Services/navbar-state-service.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-post',
@@ -17,6 +18,7 @@ export class EditPostComponent implements OnInit {
   private readonly _JobsService = inject(JobsService)
   private readonly navbarService = inject(NavbarStateService)  
   private readonly _ActivatedRoute = inject(ActivatedRoute);
+  private readonly _ToastrService = inject(ToastrService);
   
 
        postJobForm: FormGroup = this._FormBuilder.group({
@@ -117,6 +119,7 @@ ngOnInit(): void {
           next:(res)=>{
             console.log('hello')
             console.log(res);
+            this._ToastrService.warning("Post Updated")
           },
           error:(err)=>{
             console.log('error');

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../Core/Services/auth.service';
 import { NavbarStateService } from '../../Core/Services/navbar-state-service.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-skills-and-tools',
@@ -17,7 +18,9 @@ export class SkillsAndToolsComponent {
 
   private fb = inject(FormBuilder);
   private readonly _AuthService = inject(AuthService);
-     private navbarService = inject(NavbarStateService);
+  private navbarService = inject(NavbarStateService);
+  private readonly _ToastrService = inject(ToastrService)
+
 
   ngOnInit() {
     this.navbarService.setScrolled(true); // solid background
@@ -88,11 +91,13 @@ submit(): void {
     this._AuthService.postsignup(finalUserObject).subscribe({
       next: res => {
         console.log('Success:', res);
+        this._ToastrService.success("Register Success")
         localStorage.removeItem('signupFormData'); // optional cleanup
       },
       error: (err) => {
         console.log('Submission Error:', err)
         this.messageError = err.error.errorMessage
+        this._ToastrService.warning("Register Faild")
       }
     });
   } else {

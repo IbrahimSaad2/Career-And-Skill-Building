@@ -5,6 +5,8 @@ import { JobsService } from '../../Core/Services/jobs.service';
 import { IPosts } from '../../Core/interfaces/IPosts';
 import { CurrencyPipe } from '@angular/common';
 import { NavbarStateService } from '../../Core/Services/navbar-state-service.service';
+import { ToastrService } from 'ngx-toastr';
+import { error } from 'console';
 
 @Component({
   selector: 'app-job-application',
@@ -16,6 +18,8 @@ export class JobApplicationComponent implements OnInit {
   private readonly _ActivatedRoute = inject(ActivatedRoute);
   private readonly _JobsService = inject(JobsService);
   private readonly navbarService = inject(NavbarStateService);
+  private readonly _ToastrService = inject(ToastrService);
+
 
 
   posts: IPosts | null = null;
@@ -25,6 +29,28 @@ export class JobApplicationComponent implements OnInit {
       return '';
     }
     return this.posts.skills.map((skill) => skill.category).join(' , ');
+  }
+
+  applyjob():void{
+    this._ActivatedRoute.paramMap.subscribe({
+      next:(p)=>{
+        let id = p.get('id');
+        this._JobsService.ApplyJob(id).subscribe({
+          next:(res)=>{
+            console.log(res);
+            this._ToastrService.success('Job Applied');
+          },
+          error:(err)=>{
+            console.log(err);
+            this._ToastrService.error("Somthing went wrong");
+          }
+        })
+      },
+      error:(er)=>{
+        console.log(er);
+      }
+    })
+
   }
 
   ngOnInit(): void {

@@ -2,38 +2,24 @@
     <div class=" d-flex justify-content-between">
         <div class=" mt-3">
             <h3>{{posts?.name}}</h3>
+            <h4 class="pb-5 text-start" style="color: var(--secondary-color);">{{posts?.companyName}}</h4>
         </div>
         <div class=" logo">
             <img class="img-fluid" src="./assets/Img/Orange_logo.svg.png" alt="">
         </div>
     </div>
     <div >
-        <p class="time">{{posts?.employmentType}}</p>
+        <p class="time mt-2">{{posts?.employmentType}}</p>
         <p class="location w-100 text-start">-{{posts?.location?.street}} , {{posts?.location?.city}} , {{posts?.location?.country}}</p>
         <p class="text-start somedetails">{{posts?.description}}</p>
         <div class="d-flex justify-content-around">
-            <h3 class="text-start ms-5">Applicants : 230</h3>
-            <h3>Salary : <span class="accent">{{posts?.minSalary | currency : 'EGP' }} - {{posts?.maxSalary | currency : 'EGP' }}</span></h3>
+            <h3 class="text-start ms-5"> Minimum Salary : <span class="accent">{{posts?.minSalary | currency : 'EGP'}}</span></h3>
+            <h3>Maximum Salary : <span class="accent">{{posts?.maxSalary | currency : 'EGP' }}</span></h3>
         </div>
     </div>
     <div class="d-flex justify-content-between apply my-2">
         <a class="btn ms-3 mt-4" routerLink="../../posts">View Similar Job</a>
-        <a class="now btn me-3 mt-4" routerLink="">Apply Now</a>
-    </div>
-</section>
-<section class="details container mt-5">
-    <div class="py-3">
-        <h4>Job Details</h4>
-        <p>
-            Experience Needed : 2 to 8 years
-        </p>
-        <p>
-            Education Level : Bachelor's Degree
-        </p>
-        <span>
-            Job Categories :
-        </span>
-        <span>{{ skillCategories }}</span>
+        <a class="now btn me-3 mt-4" routerLink="../../jobSeekerDashboard" (click)="applyjob()" routerLink="">Apply Now</a>
     </div>
 </section>
 <section class="container skill mt-5">

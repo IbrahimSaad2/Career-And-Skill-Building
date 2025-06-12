@@ -127,12 +127,12 @@
 
     <!-- Skills (dynamic form array) -->
     <div formArrayName="skills" class="mb-3">
-      <label class="form-label">Skills</label>
       <div
-        *ngFor="let skill of skills.controls; let i = index"
+      *ngFor="let skill of skills.controls; let i = index"
         [formGroupName]="i"
         class="mb-2"
       >
+        <label class="form-label">Skill Name {{i+1}}</label>
         <input
           type="text"
           class="form-control mb-2"
@@ -178,7 +178,7 @@
 
     </div>
 
-    <button routerLink="/jobs" type="submit" class="btn btn-primary ms-auto d-block" [disabled]="!postJobForm.valid">
+    <button routerLink="../posts" type="submit" class="btn btn-primary ms-auto d-block" [disabled]="!postJobForm.valid">
       Submit Job
     </button>
   </form>

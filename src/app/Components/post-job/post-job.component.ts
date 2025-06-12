@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { JobsService } from '../../Core/Services/jobs.service';
 import { NavbarStateService } from '../../Core/Services/navbar-state-service.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-post-job',
   imports: [CommonModule, FormsModule, RouterModule, ReactiveFormsModule],
@@ -15,6 +16,8 @@ export class PostJobComponent {
     private readonly _FormBuilder = inject(FormBuilder)
     private readonly _JobsService = inject(JobsService)
     private readonly navbarService = inject(NavbarStateService)
+         private readonly _ToastrService = inject(ToastrService)
+
   
     postJobForm: FormGroup = this._FormBuilder.group({
     name: [null, Validators.required],
@@ -65,9 +68,11 @@ removeSkill() {
       this._JobsService.postJobs(this.postJobForm.value).subscribe({
         next:(res)=>{
           console.log(res)
+          this._ToastrService.success("Job Posted")
         },
         error:(err)=>{
           console.log(err)
+          this._ToastrService.error("Failed Posted")
         }
       })
     } 

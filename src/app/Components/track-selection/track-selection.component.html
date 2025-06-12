@@ -1,4 +1,12 @@
 <section class="container">
+    <div class="container pt-5 mt-5">
+      <div class="mb-4 d-flex justify-content-center align-items-center">
+        <input [(ngModel)]="searchQuery" (keydown.enter)="searchTrack()" type="text" class="form-control w-50 me-2" placeholder="Search for a track..." />
+        <button class="btn btn-primary" (click)="searchTrack()">
+          <i class="fa fa-search me-1"></i> Search
+        </button>
+      </div>
+    </div>
     <div class="track-container" style="margin-top: 100px;">
       <h2 class="text-start title">Select Track</h2>
         <div class="row g-4 d-flex justify-content-center">
@@ -10,7 +18,7 @@
                   <p class="text-center"><i class="fa-solid fa-layer-group me-1" style="color: #000000;"></i> {{track.difficultyLevel}}</p>
                   <div class="card-body">
                     <h5 class="card-title">{{track.name}}</h5>
-                    <p class="card-text">{{track.description.slice(0 , 200)}}...</p>
+                    <p class="card-text">{{track.description.slice(0 , 149)}}...</p>
                     <a [routerLink]="['../courseDetails',track.name]" class="btn btn-primary">Apply Now</a>
                   </div>
                 </div>

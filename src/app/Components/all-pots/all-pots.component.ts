@@ -3,6 +3,7 @@ import { JobsService } from '../../Core/Services/jobs.service';
 import { NavbarStateService } from '../../Core/Services/navbar-state-service.service';
 import { Job } from '../../Core/interfaces/job';
 import { RouterLink } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-all-pots',
@@ -13,6 +14,7 @@ import { RouterLink } from '@angular/router';
 export class AllPotsComponent implements OnInit {
   private readonly _JobsService = inject(JobsService);
   private readonly navbarService = inject(NavbarStateService);
+  private readonly _ToastrService = inject(ToastrService);
   jobs:Job[] = []
 
   ngOnInit(): void {
@@ -22,6 +24,8 @@ export class AllPotsComponent implements OnInit {
       next:(res)=>{
         console.log(res);
         this.jobs = res
+        this.jobs = this.jobs.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+
       },
       error:(err)=>{
         console.log(err);
@@ -33,6 +37,7 @@ export class AllPotsComponent implements OnInit {
     this._JobsService.DeleteJobs(id).subscribe({
       next:(res)=>{
         console.log(res);
+        this._ToastrService.error('Post Delete')
       },
       error:(err)=>{
         console.log(err)

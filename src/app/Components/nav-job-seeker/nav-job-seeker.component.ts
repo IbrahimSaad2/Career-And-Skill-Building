@@ -14,6 +14,7 @@ export class NavJobSeekerComponent {
   signout(): void {
   localStorage.removeItem('token');
   localStorage.removeItem('details');
+  localStorage.removeItem('examAttempts')
 }
   private navbarService = inject(NavbarStateService);
     isScrolled = signal(true);
