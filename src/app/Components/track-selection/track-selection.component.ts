@@ -15,6 +15,7 @@ export class TrackSelectionComponent {
     private readonly navbarService = inject(NavbarStateService)
     private readonly _TrackService = inject(TrackService)
     tracks:Tracks[] = []
+    trackByid:Tracks[]= [];
     ngOnInit(): void {
       this.navbarService.setScrolled(true);  
       this._TrackService.getallTracks().subscribe({
@@ -28,19 +29,20 @@ export class TrackSelectionComponent {
       })
     }
 searchQuery = '';
+click:boolean = false
 
 searchTrack(): void {
   const query = this.searchQuery.trim();
-  if (query) {
-    this._TrackService.getById(query).subscribe({
-      next: (res) => {
-        console.log(res);
-        this.tracks = res;
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    });
+  this.click = true;
+
+  if (!query) {
+    this.trackByid = [];
+    return;
   }
+
+  this._TrackService.getById(query).subscribe({
+    next: (res) => this.trackByid = Array.isArray(res) ? res : [res],
+    error: (err) => console.error(err)
+  });
 }
 }

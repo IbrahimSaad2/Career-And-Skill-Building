@@ -10,19 +10,37 @@
     <div class="track-container" style="margin-top: 100px;">
       <h2 class="text-start title">Select Track</h2>
         <div class="row g-4 d-flex justify-content-center">
-          @for (track of tracks; track $index) {
-            <div class="col-md-3 mt-5 track">
-              <div class="card mx-auto my-4" style="width: 18rem;">
-                  <img [src]="track.coverUrl" class="card-img-top" [alt]="track.name">
-                  <p class="text-center"><i class="fa-solid fa-clock me-1" style="color: #000000;"></i>{{track.durationInHours}}H</p>
-                  <p class="text-center"><i class="fa-solid fa-layer-group me-1" style="color: #000000;"></i> {{track.difficultyLevel}}</p>
-                  <div class="card-body">
-                    <h5 class="card-title">{{track.name}}</h5>
-                    <p class="card-text">{{track.description.slice(0 , 149)}}...</p>
-                    <a [routerLink]="['../courseDetails',track.name]" class="btn btn-primary">Apply Now</a>
+          @if (click) {
+            @for (track of trackByid; track $index) {
+              <div class="col-md-3 mt-5 track">
+                <div class="card mx-auto my-4" style="width: 18rem;">
+                    <img [src]="track.coverUrl" class="card-img-top" [alt]="track.name">
+                    <p class="text-center"><i class="fa-solid fa-clock me-1" style="color: #000000;"></i>{{track.durationInHours}}H</p>
+                    <p class="text-center"><i class="fa-solid fa-layer-group me-1" style="color: #000000;"></i> {{track.difficultyLevel}}</p>
+                    <div class="card-body">
+                      <h5 class="card-title">{{track.name}}</h5>
+                      <p class="card-text">{{track.description.slice(0 , 149)}}...</p>
+                      <a [routerLink]="['../courseDetails',track.name]" class="btn btn-primary">Apply Now</a>
+                    </div>
                   </div>
-                </div>
-          </div>
+              </div>
+            }
+          }
+          @else {
+                        @for (track of tracks; track $index) {
+              <div class="col-md-3 mt-5 track">
+                <div class="card mx-auto my-4" style="width: 18rem;">
+                    <img [src]="track.coverUrl" class="card-img-top" [alt]="track.name">
+                    <p class="text-center"><i class="fa-solid fa-clock me-1" style="color: #000000;"></i>{{track.durationInHours}}H</p>
+                    <p class="text-center"><i class="fa-solid fa-layer-group me-1" style="color: #000000;"></i> {{track.difficultyLevel}}</p>
+                    <div class="card-body">
+                      <h5 class="card-title">{{track.name}}</h5>
+                      <p class="card-text">{{track.description.slice(0 , 149)}}...</p>
+                      <a [routerLink]="['../courseDetails',track.name]" class="btn btn-primary">Apply Now</a>
+                    </div>
+                  </div>
+            </div>
+            }
           }
         </div>
     </div>
